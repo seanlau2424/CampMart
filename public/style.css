@@ -45,8 +45,8 @@ body {
 
 .camera-container {
     display:none;
-    width:70%;
-    height:70%;
+    width:80%;
+    height:80%;
     flex-direction:column;
     justify-content:center;
     align-items:center;
@@ -71,7 +71,7 @@ body {
 .video-wrapper video {
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit:contain;
 }
 
 .scan-overlay {
@@ -86,7 +86,7 @@ body {
 
 .scan-box {
     width:60%;
-    height:40%;
+    height:50%;
     border:3px solid white;
     border-radius:18px;
     position:relative;
@@ -115,15 +115,32 @@ body {
     }
 }
 
+.camera-controls {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.flip-camera,
 .close-scan {
-    margin-top:20px;
-    padding:12px 35px;
-    border:none;
-    border-radius:12px;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.flip-camera {
+    background: #b9ddff;
+    color: #174a7c;
+}
+
+.close-scan {
     background:#ffd0d0;
     color:#7c2525;
-    font-size:18px;
-    font-weight:600;
 }
 
 .cart-area {
