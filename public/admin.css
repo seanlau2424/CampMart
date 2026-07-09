@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    height: 100dvh;
+    width: 100%;
+    background: white;
+}
+
+.top-header {
+    height: 70px;
+    width: 100%;
+    background: #96C9FF;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.header-title {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.logout-button {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    background:#ffd0d0;
+    color:#7c2525;
+}
+
+.logout-button:hover {
+    background: #eef6ff;
+}

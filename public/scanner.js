@@ -12,6 +12,7 @@ const flipButton = document.getElementById("flipCamera");
 const cameraContainer = document.getElementById("cameraContainer");
 const video = document.getElementById("video");
 const cartItems = document.getElementById("cartItems");
+const adminButton = document.getElementById("adminLogin");
 
 let scanCooldown = false;
 let controls;
@@ -62,7 +63,8 @@ async function startCamera(){
                 ideal:1080
             },
             facingMode:{
-                exact:currentFacingMode
+                //exact:currentFacingMode
+                ideal: currentFacingMode
             }
         }
     };
@@ -94,6 +96,10 @@ function addToCart(barcode){
 }
 
 await startCamera();
+
+adminButton.addEventListener("click", () => {
+    window.location.href = "/login";
+});
 
 scanButton.addEventListener("click", async () => {
     scanButton.style.display = "none";
