@@ -204,8 +204,56 @@ body {
     padding: 12px;
     margin-bottom: 12px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 12px;
     color: #456;
+}
+
+.cart-item-info {
+    font-size: 15px;
+    color: #456;
+}
+
+.cart-item-info strong {
+    font-size: 17px;
+    color: #174a7c;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.cart-item-controls button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    background: #b9ddff;
+    color: #174a7c;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.cart-item-controls button:hover {
+    background: #96C9FF;
+}
+
+.cart-item-controls span {
+    min-width: 25px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: #174a7c;
+}
+
+.cart-item-total {
+    text-align: right;
+    font-weight: 700;
+    color: #174a7c;
 }
 
 .cart-total {
@@ -217,6 +265,94 @@ body {
     font-size: 20px;
     font-weight: 700;
     color: #174a7c;
+}
+
+.checkout-button {
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#b9ddff;
+    color:#174a7c;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    display:none;
+}
+
+.checkout-button:hover {
+    background:#96C9FF;
+}
+
+.checkout-modal {
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.35);
+}
+
+.checkout-modal.show {
+    display:flex;
+}
+
+.checkout-modal-content {
+    width:400px;
+    padding:35px;
+    background:white;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.15);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:25px;
+}
+
+.checkout-title {
+    font-size:22px;
+    font-weight:700;
+    color:#174a7c;
+}
+
+.checkout-total {
+    font-size:32px;
+    font-weight:700;
+    color:#3d6f9f;
+}
+
+.checkout-buttons {
+    width:100%;
+    display:flex;
+    gap:15px;
+}
+
+.checkout-buttons button {
+    flex:1;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.paid-button {
+    background:#b9ddff;
+    color:#174a7c;
+}
+
+.paid-button:hover {
+    background:#96C9FF;
+}
+
+.cancel-checkout-button {
+    background:#ffd0d0;
+    color:#7c2525;
+}
+
+.cancel-checkout-button:hover {
+    background:#ffbebe;
 }
 
 .rotate-message {

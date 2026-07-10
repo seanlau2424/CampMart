@@ -59,10 +59,35 @@
 
             <div class="cart-total">
                 <span>Total</span>
-                <span>$8.50</span>
+                <span id="cartTotal">RM 0.00</span>
             </div>
+
+            <button class="checkout-button" id="checkoutButton">
+                Checkout
+            </button>
         </div>
     </div>
+    <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-modal-content">
+        <div class="checkout-title">
+            Total Payable
+        </div>
+
+        <div class="checkout-total" id="checkoutTotal">
+            RM 0.00
+        </div>
+
+        <div class="checkout-buttons">
+            <button class="cancel-checkout-button" id="cancelCheckout">
+                Cancel
+            </button>
+
+            <button class="paid-button" id="paidButton">
+                I've Paid
+            </button>
+        </div>
+    </div>
+</div>
     <script type="module" src="scanner.js"></script>
 </body>
 </html>

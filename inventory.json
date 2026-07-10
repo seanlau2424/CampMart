@@ -1,23 +1,9 @@
 [
   {
-    "id": "9556001122334",
-    "name": "Mineral Water",
-    "barcode": "9556001122334",
-    "price": 1.5,
-    "quantity": 10
-  },
-  {
-    "id": "9556005566778",
-    "name": "Chocolate Bar",
-    "barcode": "9556005566778",
-    "price": 2.5,
-    "quantity": 10
-  },
-  {
-    "id": "4903015500120",
-    "name": "Chip star",
-    "barcode": "4903015500120",
+    "id": "9555579207783",
+    "name": "Salted Egg Cookies",
+    "barcode": "9555579207783",
     "price": 5,
-    "quantity": 10
+    "quantity": 5
   }
 ]

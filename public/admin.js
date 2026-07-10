@@ -35,6 +35,10 @@ let scannerControls;
 let stream;
 let currentFacingMode = "user";
 
+let scanSound = new Audio("/assets/barcode-scan-sound.mp3");
+scanSound.volume = 0.7;
+scanSound.preload = "auto";
+
 const hints = new Map();
 
 hints.set(
@@ -150,6 +154,15 @@ async function startBarcodeCamera(){
 }
 
 async function openBarcodeScanner(){
+    try{
+        scanSound.play();
+        scanSound.pause();
+        scanSound.currentTime = 0;
+    }
+    catch(e){
+        console.log("Audio unlock failed:", e);
+    }
+
     barcodeModal.classList.add("show");
 
     await startBarcodeCamera();
@@ -159,8 +172,11 @@ async function openBarcodeScanner(){
             video,
             (result,error)=>{
                 if(result){
-                    const barcode =
-                        result.getText();
+                    const barcode = result.getText();
+                    scanSound.currentTime = 0;
+                    scanSound.play().catch(err=>{
+                        console.log("Scan sound blocked:", err);
+                    });
                     stopBarcodeScanner();
                     openModal();
                     itemBarcode.value = barcode;
@@ -194,9 +210,18 @@ flipButton.addEventListener("click", async()=>{
             video,
             (result,error)=>{
                 if(result){
+
                     const barcode = result.getText();
+
+                    scanSound.currentTime = 0;
+                    scanSound.play().catch(err=>{
+                        console.log("Scan sound blocked:", err);
+                    });
+
                     stopBarcodeScanner();
+
                     openModal();
+
                     itemBarcode.value = barcode;
                 }
             }
