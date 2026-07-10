@@ -13,8 +13,6 @@ app.use(session({
     saveUninitialized: false
 }));
 
-app.use(express.static(path.join(__dirname, "public")));
-
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "app.html"));
 });
@@ -39,6 +37,13 @@ app.get("/admin", (req, res) => {
     );
 });
 
+app.get("/inventory", (req, res)=>{
+    const inventory = JSON.parse(
+        fs.readFileSync("inventory.json","utf8")
+    );
+    res.json(inventory);
+});
+
 app.post("/login", (req, res) => {
     const { username, password } = req.body;
     const credentials = JSON.parse(fs.readFileSync("admin.json", "utf8"));
@@ -53,6 +58,79 @@ app.post("/login", (req, res) => {
         message: "Invalid username or password"
     });
 });
+
+app.post("/inventory",(req,res)=>{
+    const inventory = JSON.parse(
+        fs.readFileSync("inventory.json","utf8")
+    );
+
+    const newItem = {
+        id: req.body.barcode,
+        ...req.body
+    };
+
+    inventory.push(newItem);
+
+    fs.writeFileSync(
+        "inventory.json",
+        JSON.stringify(inventory,null,2)
+    );
+
+    res.json(newItem);
+});
+
+app.put("/inventory/:id",(req,res)=>{
+    const inventory = JSON.parse(
+        fs.readFileSync("inventory.json","utf8")
+    );
+
+    const id = req.params.id;
+
+    const index = inventory.findIndex(
+        item=>item.id===id
+    );
+
+    if(index === -1){
+        return res.status(404).json({
+            message:"Item not found"
+        });
+    }
+
+    inventory[index] = {
+        ...inventory[index],
+        ...req.body
+    };
+
+    fs.writeFileSync(
+        "inventory.json",
+        JSON.stringify(inventory,null,2)
+    );
+
+    res.json(inventory[index]);
+});
+
+app.delete("/inventory/:id",(req,res)=>{
+    let inventory = JSON.parse(
+        fs.readFileSync("inventory.json","utf8")
+    );
+
+    const id = req.params.id;
+
+    inventory = inventory.filter(
+        item=>item.id!==id
+    );
+
+    fs.writeFileSync(
+        "inventory.json",
+        JSON.stringify(inventory,null,2)
+    );
+
+    res.json({
+        success:true
+    });
+});
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);

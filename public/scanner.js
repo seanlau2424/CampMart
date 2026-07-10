@@ -110,7 +110,6 @@ scanButton.addEventListener("click", async () => {
             if(result && !scanCooldown){
                 scanCooldown = true
                 let barcode = result.getText();
-                console.log("Barcode ID:", barcode);
                 addToCart(barcode);
                 setTimeout(()=>{
                     scanCooldown = false;

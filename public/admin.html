@@ -8,16 +8,90 @@
 </head>
 <body>
 
-    <header class="top-header">
-        <div class="header-title">
-            ~Youth Camp Mart Admin Dashboard~
-        </div>
-        <button class="logout-button" id="logoutButton">
-            Logout
-        </button>
-    </header>
+<header class="top-header">
+    <div class="header-title">
+        ~Youth Camp Admin Dashboard~
+    </div>
 
-<script src="admin.js"></script>
+    <button id="logoutButton" class="logout-button">
+        Logout
+    </button>
+</header>
+
+<main class="dashboard">
+    <section class="stats">
+        <div class="stat-card">
+            <div class="stat-title">📦 Total Items</div>
+            <div class="stat-value" id="totalItems">0</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-title">📦 Last Item Added</div>
+            <div class="stat-value" id="lastItem">
+                -
+            </div>
+        </div>
+    </section>
+
+
+    <section class="inventory-section">
+        <div class="section-header">
+            <h2>Inventory</h2>
+        </div>
+
+        <div class="inventory-grid" id="inventoryGrid">
+        </div>
+    </section>
+</main>
+
+<div class="modal" id="barcodeModal">
+    <div class="modal-content scanner-modal">
+        <h2>Scan Item Barcode</h2>
+        <div class="video-wrapper">
+            <video id="video" autoplay playsinline></video>
+        </div>
+        <div class="modal-buttons">
+            <button type="button" class="flip-camera" id="flipCamera">Flip Camera</button>
+            <button type="button" id="cancelScan" class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="itemModal">
+    <div class="modal-content">
+        <h2 id="modalTitle">Add Item</h2>
+        <form id="itemForm">
+            <label>Item Name<input id="itemName" type="text" required></label>
+            <label>Barcode<input id="itemBarcode" type="text" required></label>
+            <label>Price (RM)<input id="itemPrice" type="number" step="0.01" required></label>
+            <label>Stock Quantity<input id="itemQuantity" type="number" required></label>
+
+            <div class="modal-buttons">
+                <button type="button" id="cancelButton" class="cancel-btn">Cancel</button>
+                <button type="submit" class="save-btn">Save Item</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="deleteModal">
+    <div class="modal-content">
+        <h2>Delete Item</h2>
+        <p style="color:#555;margin-bottom:25px;">
+            Are you sure you want to delete this item?
+        </p>
+        <div class="modal-buttons">
+            <button class="cancel-btn" id="cancelDelete">
+                Cancel
+            </button>
+            <button class="delete-btn" id="confirmDelete">
+                Delete
+            </button>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="admin.js"></script>
 
 </body>
 </html>
