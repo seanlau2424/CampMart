@@ -6,6 +6,7 @@ const modalTitle = document.getElementById("modalTitle");
 const itemForm = document.getElementById("itemForm");
 const itemName = document.getElementById("itemName");
 const itemBarcode = document.getElementById("itemBarcode");
+const itemCost = document.getElementById("itemCost");
 const itemPrice = document.getElementById("itemPrice");
 const itemQuantity = document.getElementById("itemQuantity");
 const cancelButton = document.getElementById("cancelButton");
@@ -33,7 +34,7 @@ let editId = null;
 let barcodeScanner;
 let scannerControls;
 let stream;
-let currentFacingMode = "user";
+let currentFacingMode = "environment";
 
 let scanSound = new Audio("/assets/barcode-scan-sound.mp3");
 scanSound.volume = 0.7;
@@ -70,6 +71,10 @@ function renderInventory(){
 
             <div class="item-info">
                 Barcode: ${item.barcode}
+            </div>
+
+            <div class="item-info">
+                Cost: RM ${item.cost.toFixed(2)}
             </div>
 
             <div class="item-info">
@@ -145,7 +150,7 @@ async function startBarcodeCamera(){
                     ideal:1080
                 },
                 facingMode:{
-                    ideal: currentFacingMode
+                    exact: currentFacingMode
                 }
             }
         });
@@ -195,9 +200,9 @@ function openModal(){
 
 flipButton.addEventListener("click", async()=>{
     currentFacingMode =
-        currentFacingMode === "user"
-        ? "environment"
-        : "user";
+        currentFacingMode === "environment"
+        ? "user"
+        : "environment";
 
     if(scannerControls){
         scannerControls.stop();
@@ -267,6 +272,7 @@ async e=>{
     const item = {
         name:itemName.value,
         barcode:itemBarcode.value,
+        cost: Number(itemCost.value),
         price:Number(itemPrice.value),
         quantity:Number(itemQuantity.value)
     };
@@ -314,6 +320,7 @@ window.editItem=function(id){
     modalTitle.textContent="Edit Item";
     itemName.value=item.name;
     itemBarcode.value=item.barcode;
+    itemCost.value=item.cost;
     itemPrice.value=item.price;
     itemQuantity.value=item.quantity;
 

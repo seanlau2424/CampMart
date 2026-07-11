@@ -284,7 +284,7 @@ body {
     background:#96C9FF;
 }
 
-.checkout-modal {
+.modal {
     position:fixed;
     inset:0;
     display:none;
@@ -293,11 +293,11 @@ body {
     background:rgba(0,0,0,0.35);
 }
 
-.checkout-modal.show {
+.modal.show {
     display:flex;
 }
 
-.checkout-modal-content {
+.modal-content {
     width:400px;
     padding:35px;
     background:white;
@@ -319,6 +319,7 @@ body {
     font-size:32px;
     font-weight:700;
     color:#3d6f9f;
+    margin-bottom: 20px;
 }
 
 .checkout-buttons {
@@ -337,12 +338,12 @@ body {
     cursor:pointer;
 }
 
-.paid-button {
+.proceed-button {
     background:#b9ddff;
     color:#174a7c;
 }
 
-.paid-button:hover {
+.proceed-button:hover {
     background:#96C9FF;
 }
 
@@ -353,6 +354,38 @@ body {
 
 .cancel-checkout-button:hover {
     background:#ffbebe;
+}
+
+.payment-qr{
+    width:300px;
+    display:block;
+    margin:25px auto;
+}
+
+.payment-text{
+    text-align:center;
+    color:#174a7c;
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:25px;
+    font-weight:700;
+}
+
+.thankyou-gif{
+    width:250px;
+    max-width:100%;
+}
+
+.empty-cart{
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.welcome-gif{
+    width:220px;
+    max-width:80%;
 }
 
 .rotate-message {

@@ -67,27 +67,96 @@
             </button>
         </div>
     </div>
-    <div class="checkout-modal" id="checkoutModal">
-    <div class="checkout-modal-content">
-        <div class="checkout-title">
-            Total Payable
-        </div>
 
-        <div class="checkout-total" id="checkoutTotal">
-            RM 0.00
-        </div>
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="checkout-title">
+                Total Payable
+            </div>
 
-        <div class="checkout-buttons">
-            <button class="cancel-checkout-button" id="cancelCheckout">
-                Cancel
-            </button>
+            <div class="checkout-total" id="checkoutTotal">
+                RM 0.00
+            </div>
 
-            <button class="paid-button" id="paidButton">
-                I've Paid
-            </button>
+            <div class="checkout-buttons">
+                <button class="cancel-checkout-button" id="cancelCheckout">
+                    Cancel
+                </button>
+
+                <button class="proceed-button" id="payQr">
+                    Pay by QR
+                </button>
+
+                <button class="proceed-button" id="payCash">
+                    Pay by Cash
+                </button>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="modal" id="qrModal">
+        <div class="modal-content">
+            <div class="checkout-title">
+                Pay by QR
+            </div>
+
+            <img src="/assets/duitnow-qr.png" class="payment-qr">
+
+            <p class="payment-text">
+                Please Scan Using TNG/Banking App
+            </p>
+
+            <div class="checkout-buttons">
+                <button class="proceed-button" id="qrPaid">
+                    I've Paid
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="cashModal">
+        <div class="modal-content">
+            <div class="checkout-title">
+                Pay by Cash
+            </div>
+
+            <p class="payment-text">
+                Please pay to Esther or Janice
+            </p>
+
+            <div class="checkout-buttons">
+                <button class="proceed-button" id="cashPaid">
+                    I've Paid
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal" id="thankYouModal">
+        <div class="modal-content">
+
+            <div class="checkout-title">
+                Thank You!
+            </div>
+
+            <img src="/assets/thankyoumaltese.gif" alt="Thank You" class="thankyou-gif">
+
+            <p class="payment-text">
+                Payment received.
+                <br>
+                Enjoy the camp!
+            </p>
+
+            <div class="checkout-buttons">
+                <button class="proceed-button" id="donePayment">
+                    Done
+                </button>
+            </div>
+
+        </div>
+    </div>
+
     <script type="module" src="scanner.js"></script>
 </body>
 </html>

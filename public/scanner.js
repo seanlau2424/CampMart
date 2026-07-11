@@ -15,8 +15,17 @@ const cartItems = document.getElementById("cartItems");
 const adminButton = document.getElementById("adminLogin");
 const checkoutButton = document.getElementById("checkoutButton");
 const checkoutModal = document.getElementById("checkoutModal");
+
+const qrModal = document.getElementById("qrModal");
+const cashModal = document.getElementById("cashModal");
+const thankYouModal = document.getElementById("thankYouModal");
+
+const payQr = document.getElementById("payQr");
+const payCash = document.getElementById("payCash");
+const qrPaid = document.getElementById("qrPaid");
+const cashPaid = document.getElementById("cashPaid");
+const donePayment = document.getElementById("donePayment");
 const checkoutTotal = document.getElementById("checkoutTotal");
-const paidButton = document.getElementById("paidButton");
 const cancelCheckout = document.getElementById("cancelCheckout");
 
 let scanCooldown = false;
@@ -24,7 +33,7 @@ let controls;
 let stream;
 let inventory = [];
 let cart = [];
-let currentFacingMode = "user"; 
+let currentFacingMode = "environment"; 
 
 let scanSound = new Audio("/assets/barcode-scan-sound.mp3");
 scanSound.volume = 0.7;
@@ -71,8 +80,7 @@ async function startCamera(){
                 ideal:1080
             },
             facingMode:{
-                //exact:currentFacingMode
-                ideal: currentFacingMode
+                exact:currentFacingMode
             }
         }
     };
@@ -111,6 +119,17 @@ function updateTotal(){
 
 function renderCart(){
     cartItems.innerHTML = "";
+
+    if(cart.length === 0){
+        cartItems.innerHTML = `
+            <div class="empty-cart">
+                <img src="/assets/welcomemaltese.gif" alt="Welcome!" class="welcome-gif">
+            </div>
+        `;
+
+        checkoutButton.style.display = "none";
+        return;
+    }
 
     cart.forEach(item=>{
         const div = document.createElement("div");
@@ -177,6 +196,7 @@ function addToCart(barcode){
 }
 
 await loadInventory();
+renderCart();
 await startCamera();
 
 adminButton.addEventListener("click", () => {
@@ -220,9 +240,9 @@ scanButton.addEventListener("click", async () => {
 
 flipButton.addEventListener("click", async()=>{
     currentFacingMode =
-        currentFacingMode === "user"
-        ? "environment"
-        : "user";
+        currentFacingMode === "environment"
+        ? "user"
+        : "environment";
     await startCamera();
 });
 
@@ -237,10 +257,30 @@ checkoutButton.addEventListener("click", ()=>{
     checkoutModal.classList.add("show");
 });
 
-paidButton.addEventListener("click", ()=>{
+payQr.addEventListener("click",()=>{
+    checkoutModal.classList.remove("show");
+    qrModal.classList.add("show");
+});
+
+payCash.addEventListener("click",()=>{
+    checkoutModal.classList.remove("show");
+    cashModal.classList.add("show");
+});
+
+qrPaid.addEventListener("click",()=>{
+    qrModal.classList.remove("show");
+    thankYouModal.classList.add("show");
+});
+
+cashPaid.addEventListener("click",()=>{
+    cashModal.classList.remove("show");
+    thankYouModal.classList.add("show");
+});
+
+donePayment.addEventListener("click",()=>{
+    thankYouModal.classList.remove("show");
     cart = [];
     renderCart();
-    checkoutModal.classList.remove("show");
 });
 
 cancelCheckout.addEventListener("click", ()=>{

@@ -3,7 +3,16 @@
     "id": "9555579207783",
     "name": "Salted Egg Cookies",
     "barcode": "9555579207783",
+    "cost": 3,
     "price": 5,
     "quantity": 5
+  },
+  {
+    "id": "4903015500120",
+    "name": "Chip Star",
+    "barcode": "4903015500120",
+    "cost": 5,
+    "price": 7.5,
+    "quantity": 10
   }
 ]
