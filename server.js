@@ -25,7 +25,6 @@ app.get("/logout", (req, res)=>{
     req.session.destroy(()=>{
         res.redirect("/");
     });
-
 });
 
 app.get("/admin", (req, res) => {
@@ -119,6 +118,35 @@ app.delete("/inventory/:id",(req,res)=>{
     inventory = inventory.filter(
         item=>item.id!==id
     );
+
+    fs.writeFileSync(
+        "inventory.json",
+        JSON.stringify(inventory,null,2)
+    );
+
+    res.json({
+        success:true
+    });
+});
+
+app.post("/checkout", (req,res)=>{
+    const purchasedItems = req.body.items;
+    const inventory = JSON.parse(
+        fs.readFileSync("inventory.json","utf8")
+    );
+
+    purchasedItems.forEach(cartItem=>{
+        const item = inventory.find(
+            inventoryItem => inventoryItem.barcode === cartItem.barcode
+        );
+
+        if(item){
+            item.quantity -= cartItem.quantity;
+            if(item.quantity < 0){
+                item.quantity = 0;
+            }
+        }
+    });
 
     fs.writeFileSync(
         "inventory.json",

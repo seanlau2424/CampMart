@@ -277,7 +277,18 @@ cashPaid.addEventListener("click",()=>{
     thankYouModal.classList.add("show");
 });
 
-donePayment.addEventListener("click",()=>{
+donePayment.addEventListener("click", async()=>{
+    
+    await fetch("/checkout",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            items:cart
+        })
+    });
+
     thankYouModal.classList.remove("show");
     cart = [];
     renderCart();
