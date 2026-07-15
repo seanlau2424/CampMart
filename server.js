@@ -43,6 +43,13 @@ app.get("/inventory", (req, res)=>{
     res.json(inventory);
 });
 
+app.get("/transactions", (req, res) => {
+    const transactions = JSON.parse(
+        fs.readFileSync("transactions.json", "utf8")
+    );
+    res.json(transactions);
+});
+
 app.post("/login", (req, res) => {
     const { username, password } = req.body;
     const credentials = JSON.parse(fs.readFileSync("admin.json", "utf8"));
@@ -131,9 +138,17 @@ app.delete("/inventory/:id",(req,res)=>{
 
 app.post("/checkout", (req,res)=>{
     const purchasedItems = req.body.items;
+    const paymentMode = req.body.mode;
+
     const inventory = JSON.parse(
         fs.readFileSync("inventory.json","utf8")
     );
+
+    const transactions = JSON.parse(
+        fs.readFileSync("transactions.json","utf8")
+    );
+
+    const sales = [];
 
     purchasedItems.forEach(cartItem=>{
         const item = inventory.find(
@@ -146,11 +161,35 @@ app.post("/checkout", (req,res)=>{
                 item.quantity = 0;
             }
         }
+
+        sales.push([
+            item.name,
+            cartItem.quantity,
+            item.cost * cartItem.quantity,
+            item.price * cartItem.quantity
+        ]);
     });
 
     fs.writeFileSync(
         "inventory.json",
         JSON.stringify(inventory,null,2)
+    );
+
+    const now = new Date();
+
+    const date =
+        `${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()} ` +
+        `${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;
+
+    transactions.push({
+        date,
+        sales,
+        mode: paymentMode
+    });
+
+    fs.writeFileSync(
+        "transactions.json",
+        JSON.stringify(transactions,null,2)
     );
 
     res.json({

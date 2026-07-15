@@ -18,6 +18,9 @@ const barcodeModal = document.getElementById("barcodeModal");
 const video = document.getElementById("video");
 const cancelScan = document.getElementById("cancelScan");
 const flipButton = document.getElementById("flipCamera");
+const transactionsList = document.getElementById("transactionsList");
+const totalSales = document.getElementById("totalSales");
+const totalProfit = document.getElementById("totalProfit");
 
 import { BrowserMultiFormatReader } 
 from "https://cdn.jsdelivr.net/npm/@zxing/browser@latest/+esm";
@@ -117,6 +120,105 @@ async function loadInventory(){
     const response = await fetch("/inventory");
     inventory = await response.json();
     renderInventory();
+}
+
+async function loadTransactions() {
+    const response = await fetch("/transactions");
+    const transactions = await response.json();
+
+    let totalSalesValue = 0;
+    let totalProfitValue = 0;
+
+    transactionsList.innerHTML = "";
+
+    transactions.forEach((transaction, index) => {
+
+        let sales = 0;
+        let profit = 0;
+
+        transaction.sales.forEach(item => {
+            sales += item[3];
+            profit += item[3] - item[2];
+        });
+
+        totalSalesValue += sales;
+        totalProfitValue += profit;
+
+        const row = document.createElement("div");
+        row.className = "transaction-row";
+
+        row.innerHTML = `
+            <div class="transaction-summary">
+
+                <div class="transaction-date">
+                    ${transaction.date}
+                </div>
+
+                <div class="transaction-sales">
+                    RM ${sales.toFixed(2)}
+                </div>
+
+                <div class="transaction-profit">
+                    RM ${profit.toFixed(2)}
+                </div>
+
+                <button class="expand-btn">
+                    ▼
+                </button>
+
+            </div>
+
+            <div class="transaction-details">
+
+                <table>
+
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Cost</th>
+                        <th>Sales</th>
+                        <th>Profit</th>
+                    </tr>
+
+                    ${transaction.sales.map(item=>`
+                        <tr>
+                            <td>${item[0]}</td>
+                            <td>${item[1]}</td>
+                            <td>RM ${item[2].toFixed(2)}</td>
+                            <td>RM ${item[3].toFixed(2)}</td>
+                            <td>RM ${(item[3] - item[2]).toFixed(2)}</td>
+                        </tr>
+                    `).join("")}
+
+                </table>
+
+            </div>
+        `;
+
+        const button = row.querySelector(".expand-btn");
+        const details = row.querySelector(".transaction-details");
+
+        button.onclick = () => {
+
+            details.classList.toggle("show");
+
+            button.textContent =
+                details.classList.contains("show")
+                ? "▲"
+                : "▼";
+
+        };
+
+        transactionsList.appendChild(row);
+
+    });
+
+    totalSales.textContent =
+        `RM ${totalSalesValue.toFixed(2)}`;
+
+    totalProfit.textContent =
+        `RM ${totalProfitValue.toFixed(2)}`;
+
 }
 
 function updateDashboard(){
@@ -361,4 +463,9 @@ logoutButton.addEventListener(
     }
 );
 
-loadInventory();
+async function initialize(){
+    await loadInventory();
+    await loadTransactions();
+}
+
+initialize();

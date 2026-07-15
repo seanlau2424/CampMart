@@ -13,6 +13,38 @@
     "barcode": "4903015500120",
     "cost": 5,
     "price": 7,
+    "quantity": 2
+  },
+  {
+    "id": "4902888273025",
+    "name": "Morinaga candy",
+    "barcode": "4902888273025",
+    "cost": 0.5,
+    "price": 2,
     "quantity": 6
+  },
+  {
+    "id": "9551011771324",
+    "name": "Muruku",
+    "barcode": "9551011771324",
+    "cost": 0.5,
+    "price": 2,
+    "quantity": 8
+  },
+  {
+    "id": "9556023118013",
+    "name": "Super Ring",
+    "barcode": "9556023118013",
+    "cost": 0.5,
+    "price": 1,
+    "quantity": 18
+  },
+  {
+    "id": "4903015507075",
+    "name": "Chip Star Garlic",
+    "barcode": "4903015507075",
+    "cost": 6,
+    "price": 9,
+    "quantity": 8
   }
 ]

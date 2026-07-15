@@ -34,6 +34,7 @@ let stream;
 let inventory = [];
 let cart = [];
 let currentFacingMode = "environment"; 
+let paymentMode = "";
 
 let scanSound = new Audio("/assets/barcode-scan-sound.mp3");
 scanSound.volume = 0.7;
@@ -260,11 +261,13 @@ checkoutButton.addEventListener("click", ()=>{
 payQr.addEventListener("click",()=>{
     checkoutModal.classList.remove("show");
     qrModal.classList.add("show");
+    paymentMode = "TNG";
 });
 
 payCash.addEventListener("click",()=>{
     checkoutModal.classList.remove("show");
     cashModal.classList.add("show");
+    paymentMode = "Cash";
 });
 
 qrPaid.addEventListener("click",()=>{
@@ -285,13 +288,16 @@ donePayment.addEventListener("click", async()=>{
             "Content-Type":"application/json"
         },
         body:JSON.stringify({
-            items:cart
+            items:cart,
+            mode: paymentMode
         })
     });
 
     thankYouModal.classList.remove("show");
     cart = [];
+    paymentMode = "";
     renderCart();
+    await loadInventory();
 });
 
 cancelCheckout.addEventListener("click", ()=>{
