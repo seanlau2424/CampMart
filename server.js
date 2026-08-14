@@ -50,6 +50,13 @@ app.get("/transactions", (req, res) => {
     res.json(transactions);
 });
 
+app.get("/coupons", (req, res) => {
+    const coupons = JSON.parse(
+        fs.readFileSync("coupons.json", "utf8")
+    );
+    res.json(coupons);
+});
+
 app.post("/login", (req, res) => {
     const { username, password } = req.body;
     const credentials = JSON.parse(fs.readFileSync("admin.json", "utf8"));
@@ -144,6 +151,10 @@ app.post("/checkout", (req,res)=>{
         fs.readFileSync("inventory.json","utf8")
     );
 
+    const coupons = JSON.parse(
+        fs.readFileSync("coupons.json","utf8")
+    );
+
     const transactions = JSON.parse(
         fs.readFileSync("transactions.json","utf8")
     );
@@ -154,26 +165,46 @@ app.post("/checkout", (req,res)=>{
         const item = inventory.find(
             inventoryItem => inventoryItem.barcode === cartItem.barcode
         );
+        
+        const coupon = coupons.find(
+            couponItem => couponItem.barcode === cartItem.barcode
+        );
 
         if(item){
             item.quantity -= cartItem.quantity;
             if(item.quantity < 0){
                 item.quantity = 0;
             }
+
+            sales.push([
+                item.name,
+                cartItem.quantity,
+                item.cost * cartItem.quantity,
+                item.price * cartItem.quantity
+            ]);
+
+            fs.writeFileSync(
+                "inventory.json",
+                JSON.stringify(inventory,null,2)
+            );
         }
 
-        sales.push([
-            item.name,
-            cartItem.quantity,
-            item.cost * cartItem.quantity,
-            item.price * cartItem.quantity
-        ]);
-    });
+        if(coupon) {
+            coupon.activated = true;
 
-    fs.writeFileSync(
-        "inventory.json",
-        JSON.stringify(inventory,null,2)
-    );
+            sales.push([
+                coupon.name,
+                1,
+                coupon.value,
+                coupon.value
+            ]);
+
+            fs.writeFileSync(
+                "coupons.json",
+                JSON.stringify(coupons,null,2)
+            );
+        }
+    });
 
     const now = new Date();
 

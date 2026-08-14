@@ -14,7 +14,9 @@ const video = document.getElementById("video");
 const cartItems = document.getElementById("cartItems");
 const adminButton = document.getElementById("adminLogin");
 const checkoutButton = document.getElementById("checkoutButton");
+const couponButton = document.getElementById("couponButton");
 const checkoutModal = document.getElementById("checkoutModal");
+const cartActionButtons = document.querySelector(".cart-action-buttons");
 
 const qrModal = document.getElementById("qrModal");
 const cashModal = document.getElementById("cashModal");
@@ -32,7 +34,9 @@ let scanCooldown = false;
 let controls;
 let stream;
 let inventory = [];
+let coupons = [];
 let cart = [];
+let appliedCoupon = null;
 let currentFacingMode = "environment"; 
 let paymentMode = "";
 
@@ -96,12 +100,17 @@ async function loadInventory(){
     inventory = await response.json();
 }
 
+async function loadCoupons(){
+    const response = await fetch("/coupons");
+    coupons = await response.json();
+}
+
 function updateCheckoutButton(){
     if(cart.length > 0){
-        checkoutButton.style.display = "block";
+        cartActionButtons.style.display = "flex";
     }
     else{
-        checkoutButton.style.display = "none";
+        cartActionButtons.style.display = "none";
     }
 }
 
@@ -128,7 +137,7 @@ function renderCart(){
             </div>
         `;
 
-        checkoutButton.style.display = "none";
+        cartActionButtons.style.display = "none";
         return;
     }
 
@@ -164,6 +173,24 @@ function renderCart(){
         cartItems.appendChild(div);
     });
 
+    if(appliedCoupon){
+        const couponDiv = document.createElement("div");
+
+        couponDiv.className = "cart-item";
+
+        couponDiv.innerHTML = `
+            <div class="cart-item-info">
+                Applied Coupon(s): 
+            </div>
+
+            <div class="cart-item-total">
+                -RM ${appliedCoupon.value.toFixed(2)}
+            </div>
+        `;
+
+        cartItems.appendChild(couponDiv);
+    }
+
     updateTotal();
     updateCheckoutButton();
 }
@@ -173,26 +200,51 @@ function addToCart(barcode){
         item => item.barcode === barcode
     );
 
-    if(!item){
-        console.log("Item not found:", barcode);
+    const coupon = coupons.find(
+        coupon => coupon.barcode === barcode
+    );
+
+    if(!item && !coupon){
+        console.log("Item/Coupon not found:", barcode);
         return;
     }
 
-    const existingItem = cart.find(
-        cartItem => cartItem.barcode === barcode
-    );
+    if (item && !coupon) {
+        const existingItem = cart.find(
+            cartItem => cartItem.barcode === barcode
+        );
 
-    if(existingItem){
-        existingItem.quantity += 1;
+        if(existingItem){
+            existingItem.quantity += 1;
+        }
+        else{
+            cart.push({
+                barcode:item.barcode,
+                name:item.name,
+                price:item.price,
+                quantity:1
+            });
+        }
     }
-    else{
-        cart.push({
-            barcode:item.barcode,
-            name:item.name,
-            price:item.price,
-            quantity:1
-        });
+    else {
+        if (coupon.used == true) {
+            console.log("This coupon has already been used.");
+            return;
+        }
+        else if (coupon.activated == true) {
+            console.log("This coupon has already been purchased, please proceed to use it on checkout.");
+            return;
+        }
+        else {
+            cart.push({
+                barcode:coupon.barcode,
+                name:coupon.name,
+                price:coupon.value,
+                quantity:1
+            });
+        }
     }
+    
     renderCart();
 }
 
@@ -232,6 +284,61 @@ scanButton.addEventListener("click", async () => {
                 addToCart(barcode);
 
                 setTimeout(()=>{
+                    scanCooldown = false;
+                }, 2000);
+            }
+        }
+    );
+});
+
+couponButton.addEventListener("click", async () => {
+    try {
+        scanSound.play();
+        scanSound.pause();
+        scanSound.currentTime = 0;
+    } catch (e) {
+        console.log("Audio unlock failed:", e);
+    }
+
+    cameraContainer.style.display = "flex";
+
+    controls = await codeReader.decodeFromVideoElement(
+        video,
+        (result, error) => {
+            if (result && !scanCooldown) {
+                scanCooldown = true;
+
+                const barcode = result.getText();
+
+                scanSound.currentTime = 0;
+                scanSound.play().catch(err=>{
+                    console.log("Scan sound blocked:", err);
+                });
+
+                const coupon = coupons.find(
+                    coupon => coupon.barcode === barcode
+                );
+
+                if(!coupon){
+                    alert("Coupon not found!");
+                }
+                else if(coupon.activated === false){
+                    alert(
+                        "Sorry, this coupon has not been activated yet. Please purchase it first."
+                    );
+                }
+                else if(coupon.used === true){
+                    alert(
+                        "Sorry, this coupon has already been used."
+                    );
+                }
+                else{
+                    appliedCoupon = coupon;
+                    renderCart();
+                    stopScanner();
+                }
+
+                setTimeout(() => {
                     scanCooldown = false;
                 }, 2000);
             }

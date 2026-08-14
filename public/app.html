@@ -57,14 +57,32 @@
             <div class="cart-items" id="cartItems">
             </div>
 
-            <div class="cart-total">
-                <span>Total</span>
-                <span id="cartTotal">RM 0.00</span>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Total</span>
+                    <span id="cartTotal">RM 0.00</span>
+                </div>
+
+                <div class="summary-row coupon-discount-row" id="couponDiscountRow">
+                    <span>Coupon Discount(s)</span>
+                    <span id="couponDiscount">-RM 0.00</span>
+                </div>
+
+                <div class="summary-row nett-total-row">
+                    <span>Nett Total</span>
+                    <span id="nettTotal">RM 0.00</span>
+                </div>
             </div>
 
-            <button class="checkout-button" id="checkoutButton">
-                Checkout
-            </button>
+            <div class="cart-action-buttons">
+                <button class="coupon-button" id="couponButton">
+                    Use Coupon
+                </button>
+
+                <button class="checkout-button" id="checkoutButton">
+                    Checkout
+                </button>
+            </div>
         </div>
     </div>
 
@@ -150,13 +168,13 @@
 
             <div class="checkout-buttons">
                 <button class="proceed-button" id="donePayment">
-                    Done
+                    Done (Please click Done!)
                 </button>
             </div>
 
         </div>
     </div>
 
-    <script type="module" src="scanner.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>

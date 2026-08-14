@@ -256,28 +256,64 @@ body {
     color: #174a7c;
 }
 
-.cart-total {
+.cart-summary {
     border-top: 2px solid #d8eaf8;
     padding-top: 18px;
     margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 20px;
-    font-weight: 700;
     color: #174a7c;
 }
 
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.coupon-discount-row {
+    color: #4d8a5b;
+    display: none;
+}
+
+.nett-total-row {
+    border-top: 1px solid #d8eaf8;
+    padding-top: 12px;
+    margin-top: 10px;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.cart-action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.coupon-button,
 .checkout-button {
-    margin-top:20px;
-    padding:15px;
-    border:none;
-    border-radius:12px;
-    background:#b9ddff;
-    color:#174a7c;
-    font-size:18px;
-    font-weight:700;
-    cursor:pointer;
-    display:none;
+    flex: 1;
+    margin-top: 0;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.coupon-button {
+    background: #d9f2df;
+    color: #28643a;
+}
+
+.coupon-button:hover {
+    background: #c4eacb;
+}
+
+.checkout-button {
+    background: #b9ddff;
+    color: #174a7c;
 }
 
 .checkout-button:hover {
