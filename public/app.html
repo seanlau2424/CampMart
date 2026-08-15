@@ -47,6 +47,38 @@
                     </button>
                 </div>
             </div>
+
+            <div class="coupon-camera-modal" id="couponCameraModal">
+                <div class="coupon-camera-content">
+
+                    <div class="coupon-camera-title">
+                        Scan Coupon
+                    </div>
+
+                    <div class="coupon-scan-message" id="couponScanMessage"></div>
+
+                    <div class="coupon-video-wrapper">
+                        <video id="couponVideo" autoplay playsinline></video>
+
+                        <div class="scan-overlay">
+                            <div class="scan-box">
+                                <div class="scan-line"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="camera-controls">
+                        <button class="flip-camera" id="couponFlipCamera">
+                            Flip Camera
+                        </button>
+
+                        <button class="close-scan" id="couponCloseScan">
+                            Close Scanner
+                        </button>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
         <div class="cart-area">
@@ -118,7 +150,7 @@
                 Pay by QR
             </div>
 
-            <img src="/assets/duitnow-qr.png" class="payment-qr">
+            <img src="/assets/tng.jpeg" class="payment-qr">
 
             <p class="payment-text">
                 Please Scan Using TNG/Banking App
@@ -168,9 +200,25 @@
 
             <div class="checkout-buttons">
                 <button class="proceed-button" id="donePayment">
-                    Done (Please click Done!)
+                    Done
                 </button>
             </div>
+
+        </div>
+    </div>
+
+    <div class="modal" id="couponErrorModal">
+        <div class="modal-content coupon-error-content">
+
+            <div class="checkout-title">
+                Coupon Error
+            </div>
+
+            <p id="couponErrorMessage" class="coupon-error-message"></p>
+
+            <button class="coupon-error-ok" id="closeCouponError">
+                hehe sorry
+            </button>
 
         </div>
     </div>

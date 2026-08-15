@@ -15,12 +15,26 @@ const cartItems = document.getElementById("cartItems");
 const adminButton = document.getElementById("adminLogin");
 const checkoutButton = document.getElementById("checkoutButton");
 const couponButton = document.getElementById("couponButton");
-const checkoutModal = document.getElementById("checkoutModal");
 const cartActionButtons = document.querySelector(".cart-action-buttons");
+const cartTotal = document.getElementById("cartTotal");
+const couponDiscountRow = document.getElementById("couponDiscountRow");
+const couponDiscount = document.getElementById("couponDiscount");
+const nettTotalElement = document.getElementById("nettTotal");
+const couponScanMessage = document.getElementById("couponScanMessage");
 
+const couponCameraModal = document.getElementById("couponCameraModal");
+const couponVideo = document.getElementById("couponVideo");
+const couponFlipCamera = document.getElementById("couponFlipCamera");
+const couponCloseScan = document.getElementById("couponCloseScan");
+
+const checkoutModal = document.getElementById("checkoutModal");
 const qrModal = document.getElementById("qrModal");
 const cashModal = document.getElementById("cashModal");
 const thankYouModal = document.getElementById("thankYouModal");
+
+const couponErrorModal = document.getElementById("couponErrorModal");
+const couponErrorMessage = document.getElementById("couponErrorMessage");
+const closeCouponError = document.getElementById("closeCouponError");
 
 const payQr = document.getElementById("payQr");
 const payCash = document.getElementById("payCash");
@@ -39,6 +53,9 @@ let cart = [];
 let appliedCoupon = null;
 let currentFacingMode = "environment"; 
 let paymentMode = "";
+let couponStream;
+let couponControls;
+let couponFacingMode = "environment";
 
 let scanSound = new Audio("/assets/barcode-scan-sound.mp3");
 scanSound.volume = 0.7;
@@ -95,6 +112,36 @@ async function startCamera(){
     await video.play();
 }
 
+async function startCouponCamera(){
+    if(couponStream){
+        couponStream.getTracks().forEach(track => {
+            track.stop();
+        });
+    }
+
+    const constraints = {
+        video: {
+            width: {
+                ideal: 1920
+            },
+            height: {
+                ideal: 1080
+            },
+            facingMode: {
+                exact: couponFacingMode
+            }
+        }
+    };
+
+    couponStream =
+        await navigator.mediaDevices.getUserMedia(
+            constraints
+        );
+
+    couponVideo.srcObject = couponStream;
+    await couponVideo.play();
+}
+
 async function loadInventory(){
     const response = await fetch("/inventory");
     inventory = await response.json();
@@ -103,6 +150,28 @@ async function loadInventory(){
 async function loadCoupons(){
     const response = await fetch("/coupons");
     coupons = await response.json();
+}
+
+async function completePayment(){
+    await fetch("/checkout",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            items:cart,
+            mode:paymentMode
+        })
+    });
+
+    qrModal.classList.remove("show");
+    cashModal.classList.remove("show");
+    thankYouModal.classList.add("show");
+}
+
+function showCouponError(message){
+    couponErrorMessage.textContent = message;
+    couponErrorModal.classList.add("show");
 }
 
 function updateCheckoutButton(){
@@ -116,15 +185,19 @@ function updateCheckoutButton(){
 
 function updateTotal(){
     const total = cart.reduce(
-        (sum,item)=>{
+        (sum, item) => {
             return sum + (item.price * item.quantity);
         },
         0
     );
 
-    document.querySelector(".cart-total span:last-child")
-        .textContent = 
-        `RM ${total.toFixed(2)}`;
+    const discount = appliedCoupon ? appliedCoupon.value : 0;
+
+    const nettTotal = Math.max(0, total - discount);
+
+    cartTotal.textContent = `RM ${total.toFixed(2)}`;
+    couponDiscount.textContent = `-RM ${discount.toFixed(2)}`;
+    nettTotalElement.textContent = `RM ${nettTotal.toFixed(2)}`;
 }
 
 function renderCart(){
@@ -137,6 +210,9 @@ function renderCart(){
             </div>
         `;
 
+        cartTotal.textContent = "RM 0.00";
+        couponDiscount.textContent = "-RM 0.00";
+        nettTotalElement.textContent = "RM 0.00";
         cartActionButtons.style.display = "none";
         return;
     }
@@ -173,35 +249,17 @@ function renderCart(){
         cartItems.appendChild(div);
     });
 
-    if(appliedCoupon){
-        const couponDiv = document.createElement("div");
-
-        couponDiv.className = "cart-item";
-
-        couponDiv.innerHTML = `
-            <div class="cart-item-info">
-                Applied Coupon(s): 
-            </div>
-
-            <div class="cart-item-total">
-                -RM ${appliedCoupon.value.toFixed(2)}
-            </div>
-        `;
-
-        cartItems.appendChild(couponDiv);
-    }
-
     updateTotal();
     updateCheckoutButton();
 }
 
 function addToCart(barcode){
     const item = inventory.find(
-        item => item.barcode === barcode
+        item => String(item.barcode).trim() === String(barcode).trim()
     );
 
     const coupon = coupons.find(
-        coupon => coupon.barcode === barcode
+        coupon => String(coupon.barcode).trim() === String(barcode).trim()
     );
 
     if(!item && !coupon){
@@ -228,11 +286,11 @@ function addToCart(barcode){
     }
     else {
         if (coupon.used == true) {
-            console.log("This coupon has already been used.");
+            showCouponError("This coupon has already been used.");
             return;
         }
         else if (coupon.activated == true) {
-            console.log("This coupon has already been purchased, please proceed to use it on checkout.");
+            showCouponError("This coupon has already been purchased, please proceed to use it on checkout.");
             return;
         }
         else {
@@ -249,6 +307,7 @@ function addToCart(barcode){
 }
 
 await loadInventory();
+await loadCoupons();
 renderCart();
 await startCamera();
 
@@ -292,58 +351,56 @@ scanButton.addEventListener("click", async () => {
 });
 
 couponButton.addEventListener("click", async () => {
+    couponCameraModal.classList.add("show");
     try {
-        scanSound.play();
-        scanSound.pause();
-        scanSound.currentTime = 0;
-    } catch (e) {
-        console.log("Audio unlock failed:", e);
+        await startCouponCamera();
+        couponControls =
+            await codeReader.decodeFromVideoElement(
+                couponVideo,
+                (result, error) => {
+                    if(result && !scanCooldown){
+                        scanCooldown = true;
+                        couponScanMessage.textContent = "";
+                        const barcode = result.getText();
+                        scanSound.currentTime = 0;
+                        scanSound.play().catch(err => {
+                            console.log(
+                                "Scan sound blocked:",
+                                err
+                            );
+                        });
+
+                        const coupon = coupons.find(
+                            coupon => String(coupon.barcode).trim() === String(barcode).trim()
+                        );
+
+                        if(!coupon){
+                            couponScanMessage.textContent = "Coupon not found!";
+                        }
+                        else if(coupon.activated === false){
+                            couponScanMessage.textContent = "Sorry, this coupon has not been activated yet. Please purchase it first.";
+                        }
+                        else if(coupon.used === true){
+                            couponScanMessage.textContent = "Sorry, this coupon has already been used.";
+                        }
+                        else {
+                            appliedCoupon = coupon;
+                            stopCouponScanner();
+                            renderCart();
+                        }
+                        setTimeout(() => {
+                            scanCooldown = false;
+                        }, 2000);
+                    }
+                }
+            );
+    } catch(error){
+        console.error(
+            "Coupon camera failed:",
+            error
+        );
+        stopCouponScanner();
     }
-
-    cameraContainer.style.display = "flex";
-
-    controls = await codeReader.decodeFromVideoElement(
-        video,
-        (result, error) => {
-            if (result && !scanCooldown) {
-                scanCooldown = true;
-
-                const barcode = result.getText();
-
-                scanSound.currentTime = 0;
-                scanSound.play().catch(err=>{
-                    console.log("Scan sound blocked:", err);
-                });
-
-                const coupon = coupons.find(
-                    coupon => coupon.barcode === barcode
-                );
-
-                if(!coupon){
-                    alert("Coupon not found!");
-                }
-                else if(coupon.activated === false){
-                    alert(
-                        "Sorry, this coupon has not been activated yet. Please purchase it first."
-                    );
-                }
-                else if(coupon.used === true){
-                    alert(
-                        "Sorry, this coupon has already been used."
-                    );
-                }
-                else{
-                    appliedCoupon = coupon;
-                    renderCart();
-                    stopScanner();
-                }
-
-                setTimeout(() => {
-                    scanCooldown = false;
-                }, 2000);
-            }
-        }
-    );
 });
 
 flipButton.addEventListener("click", async()=>{
@@ -354,14 +411,24 @@ flipButton.addEventListener("click", async()=>{
     await startCamera();
 });
 
+couponFlipCamera.addEventListener("click",async () => {
+    couponFacingMode =
+        couponFacingMode === "environment"
+            ? "user"
+            : "environment";
+    await startCouponCamera();
+});
+
 closeButton.addEventListener("click", ()=>{
     stopScanner();
 });
 
-checkoutButton.addEventListener("click", ()=>{
-    checkoutTotal.textContent =
-        document.querySelector(".cart-total span:last-child").textContent;
+couponCloseScan.addEventListener("click",() => {
+    stopCouponScanner();
+});
 
+checkoutButton.addEventListener("click", ()=>{
+    checkoutTotal.textContent = nettTotalElement.textContent;
     checkoutModal.classList.add("show");
 });
 
@@ -377,38 +444,30 @@ payCash.addEventListener("click",()=>{
     paymentMode = "Cash";
 });
 
-qrPaid.addEventListener("click",()=>{
-    qrModal.classList.remove("show");
-    thankYouModal.classList.add("show");
+qrPaid.addEventListener("click", async () => {
+    await completePayment();
 });
 
-cashPaid.addEventListener("click",()=>{
-    cashModal.classList.remove("show");
-    thankYouModal.classList.add("show");
+cashPaid.addEventListener("click", async () => {
+    await completePayment();
 });
 
 donePayment.addEventListener("click", async()=>{
-    
-    await fetch("/checkout",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            items:cart,
-            mode: paymentMode
-        })
-    });
-
     thankYouModal.classList.remove("show");
     cart = [];
+    appliedCoupon = null;
     paymentMode = "";
     renderCart();
     await loadInventory();
+    await loadCoupons();
 });
 
 cancelCheckout.addEventListener("click", ()=>{
     checkoutModal.classList.remove("show");
+});
+
+closeCouponError.addEventListener("click", ()=>{
+    couponErrorModal.classList.remove("show");
 });
 
 function stopScanner(){
@@ -424,6 +483,24 @@ function stopScanner(){
     }
     cameraContainer.style.display="none";
     scanButton.style.display="block";
+}
+
+function stopCouponScanner(){
+    if(couponControls){
+        couponControls.stop();
+        couponControls = null;
+    }
+
+    if(couponStream){
+        couponStream.getTracks().forEach(track => {
+            track.stop();
+        });
+
+        couponStream = null;
+    }
+
+    couponVideo.srcObject = null;
+    couponCameraModal.classList.remove("show");
 }
 
 window.increaseQuantity = function(barcode){

@@ -193,7 +193,8 @@ body {
 }
 
 .cart-items {
-    flex: 1;
+    flex: 1 1 auto;
+    min-height: 0;
     overflow-y: auto;
 }
 
@@ -267,20 +268,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 18px;
+    font-size: 17px;
     margin-bottom: 10px;
 }
 
 .coupon-discount-row {
     color: #4d8a5b;
-    display: none;
 }
 
 .nett-total-row {
     border-top: 1px solid #d8eaf8;
     padding-top: 12px;
     margin-top: 10px;
-    font-size: 21px;
+    font-size: 17.5px;
     font-weight: 700;
 }
 
@@ -393,9 +393,9 @@ body {
 }
 
 .payment-qr{
-    width:300px;
+    width:230px;
     display:block;
-    margin:25px auto;
+    margin:auto;
 }
 
 .payment-text{
@@ -446,6 +446,85 @@ body {
     font-size: 26px;
     font-weight: 500;
     letter-spacing: 0.2px;
+}
+
+.coupon-camera-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+}
+
+.coupon-camera-modal.show {
+    display: flex;
+}
+
+.coupon-camera-content {
+    width: 50%;
+    height: 65%;
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.coupon-camera-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #174a7c;
+    margin-bottom: 20px;
+}
+
+.coupon-video-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 20px;
+    background: black;
+}
+
+.coupon-video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.coupon-scan-message {
+    min-height: 25px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #c0392b;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.coupon-error-content {
+    width: 320px;
+    padding: 25px;
+    gap: 18px;
+}
+
+.coupon-error-message {
+    text-align: center;
+    color: #456;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.coupon-error-ok {
+    width: 100%;
+    padding: 14px;
+    font-size: 17px;
+    background:#b9ddff;
+    color:#174a7c;
 }
 
 @keyframes rotateHint {
