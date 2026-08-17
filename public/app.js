@@ -56,6 +56,7 @@ let paymentMode = "";
 let couponStream;
 let couponControls;
 let couponFacingMode = "environment";
+let couponMessageTimeout;
 
 let scanSound = new Audio("/assets/barcode-scan-sound.mp3");
 scanSound.volume = 0.7;
@@ -74,7 +75,9 @@ hints.set(
         BarcodeFormat.UPC_A
     ]
 );
-const codeReader = new BrowserMultiFormatReader(hints);
+
+const itemCodeReader = new BrowserMultiFormatReader(hints);
+const couponCodeReader = new BrowserMultiFormatReader(hints);
 
 const originalWarn = console.warn;
 console.warn = (...args) => {
@@ -91,7 +94,11 @@ async function startCamera(){
         stream.getTracks().forEach(track=>{
             track.stop();
         });
+
+        stream = null;
     }
+
+    video.srcObject = null;
 
     const constraints = {
         video:{
@@ -107,8 +114,22 @@ async function startCamera(){
         }
     };
 
-    stream = await navigator.mediaDevices.getUserMedia(constraints);
+    stream = await navigator.mediaDevices.getUserMedia(
+        constraints
+    );
+
     video.srcObject = stream;
+    await new Promise(resolve => {
+        if(video.readyState >= 2){
+            resolve();
+        }
+        else{
+            video.onloadedmetadata = () => {
+                resolve();
+            };
+        }
+    });
+
     await video.play();
 }
 
@@ -160,10 +181,13 @@ async function completePayment(){
         },
         body:JSON.stringify({
             items:cart,
-            mode:paymentMode
+            mode:paymentMode,
+            couponDiscount: appliedCoupon
+                ? appliedCoupon.value
+                : 0
         })
     });
-
+    await stopScanner()
     qrModal.classList.remove("show");
     cashModal.classList.remove("show");
     thankYouModal.classList.add("show");
@@ -221,6 +245,14 @@ function renderCart(){
         const div = document.createElement("div");
         div.className = "cart-item";
 
+        const coupon = coupons.find(
+            coupon =>
+                String(coupon.barcode).trim() ===
+                String(item.barcode).trim()
+        );
+
+        const isCoupon = !!coupon;
+
         div.innerHTML = `
             <div class="cart-item-info">
                 <strong>${item.name}</strong>
@@ -229,17 +261,27 @@ function renderCart(){
             </div>
 
             <div class="cart-item-controls">
-                <button onclick="decreaseQuantity('${item.barcode}')">
-                    -
-                </button>
+                ${
+                    isCoupon
+                    ? `
+                        <span>
+                            1
+                        </span>
+                    `
+                    : `
+                        <button onclick="decreaseQuantity('${item.barcode}')">
+                            -
+                        </button>
 
-                <span>
-                    ${item.quantity}
-                </span>
+                        <span>
+                            ${item.quantity}
+                        </span>
 
-                <button onclick="increaseQuantity('${item.barcode}')">
-                    +
-                </button>
+                        <button onclick="increaseQuantity('${item.barcode}')">
+                            +
+                        </button>
+                    `
+                }
             </div>
 
             <div class="cart-item-total">
@@ -285,11 +327,7 @@ function addToCart(barcode){
         }
     }
     else {
-        if (coupon.used == true) {
-            showCouponError("This coupon has already been used.");
-            return;
-        }
-        else if (coupon.activated == true) {
+        if (coupon.activated == true) {
             showCouponError("This coupon has already been purchased, please proceed to use it on checkout.");
             return;
         }
@@ -309,7 +347,6 @@ function addToCart(barcode){
 await loadInventory();
 await loadCoupons();
 renderCart();
-await startCamera();
 
 adminButton.addEventListener("click", () => {
     window.location.href = "/login";
@@ -320,42 +357,54 @@ scanButton.addEventListener("click", async () => {
         scanSound.play();
         scanSound.pause();
         scanSound.currentTime = 0;
-    } catch (e) {
+    }
+    catch(e) {
         console.log("Audio unlock failed:", e);
     }
 
     scanButton.style.display = "none";
     cameraContainer.style.display = "flex";
 
-    controls = await codeReader.decodeFromVideoElement(
-        video,
-        (result, error)=>{
-            if(result && !scanCooldown){
-                scanCooldown = true;
+    try {
+        await startCamera();
+        controls =
+            await itemCodeReader.decodeFromVideoElement(
+                video,
+                (result, error) => {
+                    if(result && !scanCooldown){
+                        scanCooldown = true;
+                        const barcode = result.getText();
+                        scanSound.currentTime = 0;
 
-                let barcode = result.getText();
+                        scanSound.play().catch(err => {
+                            console.log(
+                                "Scan sound blocked:",
+                                err
+                            );
+                        });
 
-                scanSound.currentTime = 0;
-                scanSound.play().catch(err=>{
-                    console.log("Scan sound blocked:", err);
-                });
+                        addToCart(barcode);
 
-                addToCart(barcode);
-
-                setTimeout(()=>{
-                    scanCooldown = false;
-                }, 2000);
-            }
-        }
-    );
+                        setTimeout(() => {
+                            scanCooldown = false;
+                        }, 2000);
+                    }
+                }
+            );
+    }
+    catch(error){
+        console.error("Item camera failed:", error);
+        stopScanner();
+    }
 });
 
 couponButton.addEventListener("click", async () => {
+    stopScanner();
     couponCameraModal.classList.add("show");
     try {
         await startCouponCamera();
         couponControls =
-            await codeReader.decodeFromVideoElement(
+            await couponCodeReader.decodeFromVideoElement(
                 couponVideo,
                 (result, error) => {
                     if(result && !scanCooldown){
@@ -380,11 +429,17 @@ couponButton.addEventListener("click", async () => {
                         else if(coupon.activated === false){
                             couponScanMessage.textContent = "Sorry, this coupon has not been activated yet. Please purchase it first.";
                         }
-                        else if(coupon.used === true){
-                            couponScanMessage.textContent = "Sorry, this coupon has already been used.";
+                        else if(
+                            appliedCoupon &&
+                            String(appliedCoupon.barcode).trim() ===
+                            String(coupon.barcode).trim()
+                        ){
+                            couponScanMessage.textContent =
+                                "This coupon has already been applied.";
                         }
                         else {
                             appliedCoupon = coupon;
+                            couponScanMessage.textContent = "";
                             stopCouponScanner();
                             renderCart();
                         }
@@ -473,16 +528,18 @@ closeCouponError.addEventListener("click", ()=>{
 function stopScanner(){
     if(controls){
         controls.stop();
+        controls = null;
     }
     if(stream){
-        stream.getTracks()
-        .forEach(track=>{
+        stream.getTracks().forEach(track => {
             track.stop();
         });
-        video.srcObject=null;
+        stream = null;
     }
-    cameraContainer.style.display="none";
-    scanButton.style.display="block";
+    video.pause();
+    video.srcObject = null;
+    cameraContainer.style.display = "none";
+    scanButton.style.display = "block";
 }
 
 function stopCouponScanner(){
@@ -500,6 +557,7 @@ function stopCouponScanner(){
     }
 
     couponVideo.srcObject = null;
+    couponScanMessage.textContent = "";
     couponCameraModal.classList.remove("show");
 }
 

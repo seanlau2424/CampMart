@@ -143,6 +143,90 @@ app.delete("/inventory/:id",(req,res)=>{
     });
 });
 
+app.delete("/coupons/:barcode", (req, res) => {
+    let coupons = JSON.parse(
+        fs.readFileSync("coupons.json", "utf8")
+    );
+
+    const barcode = req.params.barcode;
+
+    const originalLength = coupons.length;
+
+    coupons = coupons.filter(
+        coupon => String(coupon.barcode) !== String(barcode)
+    );
+
+    if(coupons.length === originalLength){
+        return res.status(404).json({
+            success:false,
+            message:"Coupon not found"
+        });
+    }
+
+    fs.writeFileSync(
+        "coupons.json",
+        JSON.stringify(coupons, null, 2)
+    );
+
+    res.json({
+        success:true
+    });
+});
+
+app.post("/coupons", (req, res) => {
+    const coupons = JSON.parse(
+        fs.readFileSync("coupons.json", "utf8")
+    );
+
+    const barcode = String(req.body.barcode).trim();
+    const value = Number(req.body.value);
+
+    if (!barcode) {
+        return res.status(400).json({
+            success: false,
+            message: "Barcode is required"
+        });
+    }
+
+    if (!value || value <= 0) {
+        return res.status(400).json({
+            success: false,
+            message: "Coupon value must be greater than 0"
+        });
+    }
+
+    const existingCoupon = coupons.find(
+        coupon =>
+            String(coupon.barcode).trim() === barcode
+    );
+
+    if (existingCoupon) {
+        return res.status(409).json({
+            success: false,
+            message: "A coupon with this barcode already exists"
+        });
+    }
+
+    const newCoupon = {
+        barcode: barcode,
+        name: `RM${value} Coupon`,
+        value: value,
+        activated: false
+    };
+
+    coupons.push(newCoupon);
+
+    fs.writeFileSync(
+        "coupons.json",
+        JSON.stringify(coupons, null, 2)
+    );
+
+    res.json({
+        success: true,
+        coupon: newCoupon
+    });
+});
+
 app.post("/checkout", (req,res)=>{
     const purchasedItems = req.body.items;
     const paymentMode = req.body.mode;
@@ -160,6 +244,7 @@ app.post("/checkout", (req,res)=>{
     );
 
     const sales = [];
+    const couponDiscount = Number(req.body.couponDiscount) || 0;
 
     purchasedItems.forEach(cartItem=>{
         const item = inventory.find(
@@ -195,7 +280,7 @@ app.post("/checkout", (req,res)=>{
             sales.push([
                 coupon.name,
                 1,
-                coupon.value,
+                0,
                 coupon.value
             ]);
 
@@ -215,7 +300,8 @@ app.post("/checkout", (req,res)=>{
     transactions.push({
         date,
         sales,
-        mode: paymentMode
+        mode: paymentMode,
+        couponDiscount
     });
 
     fs.writeFileSync(

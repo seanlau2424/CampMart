@@ -21,6 +21,18 @@ const flipButton = document.getElementById("flipCamera");
 const transactionsList = document.getElementById("transactionsList");
 const totalSales = document.getElementById("totalSales");
 const totalProfit = document.getElementById("totalProfit");
+const addCouponButton = document.getElementById("addCouponButton");
+const couponsList = document.getElementById("couponsList");
+const couponModal = document.getElementById("couponModal");
+const couponForm = document.getElementById("couponForm");
+const couponBarcode = document.getElementById("couponBarcode");
+const couponValue = document.getElementById("couponValue");
+const couponName = document.getElementById("couponName");
+const cancelCoupon = document.getElementById("cancelCoupon");
+const deleteCouponModal = document.getElementById("deleteCouponModal");
+const cancelDeleteCoupon = document.getElementById("cancelDeleteCoupon");
+const confirmDeleteCoupon = document.getElementById("confirmDeleteCoupon");
+let deleteCouponBarcode = null;
 
 import { BrowserMultiFormatReader } 
 from "https://cdn.jsdelivr.net/npm/@zxing/browser@latest/+esm";
@@ -32,12 +44,14 @@ import {
 
 let deleteId = null;
 let inventory = [];
+let coupons = [];
 let editMode = false;
 let editId = null;
 let barcodeScanner;
 let scannerControls;
 let stream;
 let currentFacingMode = "environment";
+let scannerPurpose = "";
 
 let scanSound = new Audio("/assets/barcode-scan-sound.mp3");
 scanSound.volume = 0.7;
@@ -116,10 +130,64 @@ function renderInventory(){
     updateDashboard();
 }
 
+function renderCoupons(){
+    couponsList.innerHTML = "";
+    coupons.forEach(coupon => {
+        const row = document.createElement("div");
+        row.className = "coupon-row";
+        row.innerHTML = `
+            <div class="coupon-summary">
+
+                <div class="coupon-barcode">
+                    ${coupon.barcode}
+                </div>
+
+                <div class="coupon-name">
+                    ${coupon.name}
+                </div>
+
+                <div class="
+                    coupon-status
+                    ${coupon.activated ? "active" : "inactive"}
+                ">
+                    Activated = ${coupon.activated}
+                </div>
+
+                <button class="delete-coupon-btn" data-barcode="${coupon.barcode}">
+                    x
+                </button>
+            </div>
+        `;
+
+        const deleteButton = row.querySelector(".delete-coupon-btn");
+
+        deleteButton.onclick = () => {
+            deleteCouponBarcode =
+                coupon.barcode;
+            deleteCouponModal.classList.add("show");
+        };
+
+        couponsList.appendChild(row);
+    });
+}
+
+function openCouponModal(barcode){
+    couponForm.reset();
+    couponBarcode.value = barcode;
+    couponModal.classList.add("show");
+    couponValue.focus();
+}
+
 async function loadInventory(){
     const response = await fetch("/inventory");
     inventory = await response.json();
     renderInventory();
+}
+
+async function loadCoupons(){
+    const response = await fetch("/coupons");
+    coupons = await response.json();
+    renderCoupons();
 }
 
 async function loadTransactions() {
@@ -141,8 +209,11 @@ async function loadTransactions() {
             profit += item[3] - item[2];
         });
 
+        const couponDiscount = transaction.couponDiscount || 0;
+        const finalProfit = profit - couponDiscount;
+
         totalSalesValue += sales;
-        totalProfitValue += profit;
+        totalProfitValue += finalProfit;
 
         const row = document.createElement("div");
         row.className = "transaction-row";
@@ -159,7 +230,7 @@ async function loadTransactions() {
                 </div>
 
                 <div class="transaction-profit">
-                    RM ${profit.toFixed(2)}
+                    RM ${finalProfit.toFixed(2)}
                 </div>
 
                 <button class="expand-btn">
@@ -191,6 +262,22 @@ async function loadTransactions() {
                     `).join("")}
 
                 </table>
+
+                <div class="transaction-extra">
+                    <div class="transaction-extra-row">
+                        <span>Total Coupon Discounts</span>
+                        <span>
+                            -RM ${couponDiscount.toFixed(2)}
+                        </span>
+                    </div>
+
+                    <div class="transaction-extra-row transaction-final-profit">
+                        <span>Total Profit</span>
+                        <span>
+                            RM ${finalProfit.toFixed(2)}
+                        </span>
+                    </div>
+                </div>
 
             </div>
         `;
@@ -260,7 +347,8 @@ async function startBarcodeCamera(){
     await video.play();
 }
 
-async function openBarcodeScanner(){
+async function openBarcodeScanner(purpose = "item"){
+    scannerPurpose = purpose;
     try{
         scanSound.play();
         scanSound.pause();
@@ -271,7 +359,6 @@ async function openBarcodeScanner(){
     }
 
     barcodeModal.classList.add("show");
-
     await startBarcodeCamera();
 
     scannerControls =
@@ -282,11 +369,21 @@ async function openBarcodeScanner(){
                     const barcode = result.getText();
                     scanSound.currentTime = 0;
                     scanSound.play().catch(err=>{
-                        console.log("Scan sound blocked:", err);
+                        console.log(
+                            "Scan sound blocked:",
+                            err
+                        );
                     });
+
                     stopBarcodeScanner();
-                    openModal();
-                    itemBarcode.value = barcode;
+
+                    if(scannerPurpose === "coupon"){
+                        openCouponModal(barcode);
+                    }
+                    else{
+                        openModal();
+                        itemBarcode.value = barcode;
+                    }
                 }
             }
         );
@@ -363,6 +460,62 @@ cancelScan.addEventListener(
     "click",
     ()=>{
         stopBarcodeScanner();
+    }
+);
+
+addCouponButton.addEventListener(
+    "click",
+    () => {
+        openBarcodeScanner("coupon");
+    }
+);
+
+couponValue.addEventListener(
+    "input",
+    () => {
+        const value = Number(couponValue.value);
+        if(value > 0){
+            couponName.value =
+                `RM${value} Coupon`;
+        }
+        else{
+            couponName.value = "";
+        }
+    }
+);
+
+couponForm.addEventListener(
+    "submit",
+    async e => {
+        e.preventDefault();
+        const coupon = {
+            barcode: couponBarcode.value,
+            name: couponName.value,
+            value: Number(couponValue.value),
+            activated: false
+
+        };
+        await fetch(
+            "/coupons",
+            {
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+                body:JSON.stringify(coupon)
+            }
+        );
+        couponModal.classList.remove("show");
+        await loadCoupons();
+    }
+);
+
+cancelCoupon.addEventListener(
+    "click",
+    () => {
+        couponModal.classList.remove("show");
     }
 );
 
@@ -456,6 +609,40 @@ async ()=>{
     await loadInventory();
 });
 
+cancelDeleteCoupon.addEventListener(
+    "click",
+    () => {
+        deleteCouponModal.classList.remove("show");
+        deleteCouponBarcode = null;
+    }
+);
+
+confirmDeleteCoupon.addEventListener(
+    "click",
+    async () => {
+
+        if(!deleteCouponBarcode){
+            return;
+        }
+        const response = await fetch(
+            `/coupons/${encodeURIComponent(deleteCouponBarcode)}`,
+            {
+                method:"DELETE"
+            }
+        );
+
+        if(!response.ok){
+            console.error(
+                "Failed to delete coupon"
+            );
+            return;
+        }
+        deleteCouponModal.classList.remove("show");
+        deleteCouponBarcode = null;
+        await loadCoupons();
+    }
+);
+
 logoutButton.addEventListener(
     "click",
     ()=>{
@@ -465,6 +652,7 @@ logoutButton.addEventListener(
 
 async function initialize(){
     await loadInventory();
+    await loadCoupons();
     await loadTransactions();
 }
 

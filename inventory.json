@@ -1,26 +1,26 @@
 [
   {
+    "id": "8996001311615",
+    "name": "Roma",
+    "barcode": "8996001311615",
+    "cost": 2,
+    "price": 3,
+    "quantity": 0
+  },
+  {
+    "id": "6973956343269",
+    "name": "Meds",
+    "barcode": "6973956343269",
+    "cost": 10,
+    "price": 17,
+    "quantity": 0
+  },
+  {
     "id": "9556247522764",
     "name": "Cookies",
     "barcode": "9556247522764",
-    "cost": 10,
+    "cost": 9,
     "price": 15,
-    "quantity": 6
-  },
-  {
-    "id": "051325111223",
-    "name": "Mamee",
-    "barcode": "051325111223",
-    "cost": 1,
-    "price": 1.5,
-    "quantity": 20
-  },
-  {
-    "id": "9556135425009",
-    "name": "Water",
-    "barcode": "9556135425009",
-    "cost": 1,
-    "price": 2,
-    "quantity": 8
+    "quantity": 9
   }
 ]
