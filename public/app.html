@@ -145,7 +145,7 @@
     </div>
 
     <div class="modal" id="qrModal">
-        <div class="modal-content">
+        <div class="modal-content payment-modal-content">
             <div class="checkout-title">
                 Pay by QR
             </div>
@@ -157,15 +157,23 @@
             </p>
 
             <div class="checkout-buttons">
-                <button class="proceed-button" id="qrPaid">
-                    I've Paid
-                </button>
+                <div class="paid-button-wrapper">
+                    <div class="paid-arrow paid-arrow-left">
+                        ➜
+                    </div>
+                    <button class="proceed-button" id="qrPaid">
+                        I've Paid
+                    </button>
+                    <div class="paid-arrow paid-arrow-right">
+                        ➜
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="modal" id="cashModal">
-        <div class="modal-content">
+        <div class="modal-content payment-modal-content">
             <div class="checkout-title">
                 Pay by Cash
             </div>
@@ -175,11 +183,18 @@
             </p>
 
             <div class="checkout-buttons">
-                <button class="proceed-button" id="cashPaid">
-                    I've Paid
-                </button>
+                <div class="paid-button-wrapper">
+                    <div class="paid-arrow paid-arrow-left">
+                        ➜
+                    </div>
+                    <button class="proceed-button" id="cashPaid">
+                        I've Paid
+                    </button>
+                    <div class="paid-arrow paid-arrow-right">
+                        ➜
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 

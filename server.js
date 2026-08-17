@@ -244,6 +244,7 @@ app.post("/checkout", (req,res)=>{
     );
 
     const sales = [];
+    const couponBarcode = req.body.couponBarcode;
     const couponDiscount = Number(req.body.couponDiscount) || 0;
 
     purchasedItems.forEach(cartItem=>{
@@ -283,13 +284,20 @@ app.post("/checkout", (req,res)=>{
                 0,
                 coupon.value
             ]);
-
-            fs.writeFileSync(
-                "coupons.json",
-                JSON.stringify(coupons,null,2)
-            );
         }
     });
+
+    if(couponBarcode){
+        const usedCoupon = coupons.find(
+            coupon =>
+                String(coupon.barcode).trim() ===
+                String(couponBarcode).trim()
+        );
+
+        if(usedCoupon){
+            usedCoupon.activated = false;
+        }
+    }
 
     const now = new Date();
 
@@ -303,6 +311,11 @@ app.post("/checkout", (req,res)=>{
         mode: paymentMode,
         couponDiscount
     });
+
+    fs.writeFileSync(
+        "coupons.json",
+        JSON.stringify(coupons,null,2)
+    );
 
     fs.writeFileSync(
         "transactions.json",

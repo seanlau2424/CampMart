@@ -43,6 +43,8 @@ const cashPaid = document.getElementById("cashPaid");
 const donePayment = document.getElementById("donePayment");
 const checkoutTotal = document.getElementById("checkoutTotal");
 const cancelCheckout = document.getElementById("cancelCheckout");
+const leftPaidArrow = document.querySelector(".paid-arrow-left");
+const rightPaidArrow = document.querySelector(".paid-arrow-right");
 
 let scanCooldown = false;
 let controls;
@@ -182,6 +184,9 @@ async function completePayment(){
         body:JSON.stringify({
             items:cart,
             mode:paymentMode,
+            couponBarcode: appliedCoupon
+                ? appliedCoupon.barcode
+                : null,
             couponDiscount: appliedCoupon
                 ? appliedCoupon.value
                 : 0
@@ -491,23 +496,28 @@ payQr.addEventListener("click",()=>{
     checkoutModal.classList.remove("show");
     qrModal.classList.add("show");
     paymentMode = "TNG";
+    showPaidArrows();
 });
 
 payCash.addEventListener("click",()=>{
     checkoutModal.classList.remove("show");
     cashModal.classList.add("show");
     paymentMode = "Cash";
+    showPaidArrows();
 });
 
 qrPaid.addEventListener("click", async () => {
+    hidePaidArrows();
     await completePayment();
 });
 
 cashPaid.addEventListener("click", async () => {
+    hidePaidArrows();
     await completePayment();
 });
 
 donePayment.addEventListener("click", async()=>{
+    hidePaidArrows();
     thankYouModal.classList.remove("show");
     cart = [];
     appliedCoupon = null;
@@ -519,6 +529,7 @@ donePayment.addEventListener("click", async()=>{
 
 cancelCheckout.addEventListener("click", ()=>{
     checkoutModal.classList.remove("show");
+    hidePaidArrows();
 });
 
 closeCouponError.addEventListener("click", ()=>{
@@ -559,6 +570,16 @@ function stopCouponScanner(){
     couponVideo.srcObject = null;
     couponScanMessage.textContent = "";
     couponCameraModal.classList.remove("show");
+}
+
+function showPaidArrows(){
+    leftPaidArrow.style.display = "block";
+    rightPaidArrow.style.display = "block";
+}
+
+function hidePaidArrows(){
+    leftPaidArrow.style.display = "none";
+    rightPaidArrow.style.display = "none";
 }
 
 window.increaseQuantity = function(barcode){

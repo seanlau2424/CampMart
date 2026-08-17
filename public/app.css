@@ -544,6 +544,68 @@ body {
     transform: translateY(5px);
 }
 
+.payment-modal-content {
+    position: relative;
+}
+
+.paid-button-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paid-button-wrapper .proceed-button {
+    width: 100%;
+    flex: none;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.paid-arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 1;
+    color: #e53935;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.paid-arrow-left {
+    right: calc(100% + 15px);
+    animation: arrowMoveRight 0.8s ease-in-out infinite alternate;
+}
+
+.paid-arrow-right {
+    left: calc(100% + 15px);
+    transform: translateY(-50%) scaleX(-1);
+    animation: arrowMoveLeft 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes arrowMoveRight {
+    from {
+        transform: translateY(-50%) translateX(0);
+    }
+
+    to {
+        transform: translateY(-50%) translateX(15px);
+    }
+}
+
+@keyframes arrowMoveLeft {
+    from {
+        transform: translateY(-50%) scaleX(-1) translateX(0);
+    }
+
+    to {
+        transform: translateY(-50%) scaleX(-1) translateX(15px);
+    }
+}
+
 @keyframes rotateHint {
     0% {
         transform: rotate(0deg);

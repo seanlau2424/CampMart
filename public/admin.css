@@ -369,8 +369,6 @@ body{
     display:flex;
     flex-direction:column;
     gap:10px;
-    max-height:600px;
-    overflow-y:auto;
 }
 
 .transaction-row{

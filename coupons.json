@@ -1,14 +1,1 @@
-[
-  {
-    "barcode": "7622202827716",
-    "name": "RM5 Coupon",
-    "value": 5,
-    "activated": true
-  },
-  {
-    "barcode": "9555787802916",
-    "name": "RM10 Coupon",
-    "value": 10,
-    "activated": true
-  }
-]
+[]
