@@ -21,6 +21,7 @@ const couponDiscountRow = document.getElementById("couponDiscountRow");
 const couponDiscount = document.getElementById("couponDiscount");
 const nettTotalElement = document.getElementById("nettTotal");
 const couponScanMessage = document.getElementById("couponScanMessage");
+const clearCartButton = document.getElementById("clearCartButton");
 
 const couponCameraModal = document.getElementById("couponCameraModal");
 const couponVideo = document.getElementById("couponVideo");
@@ -243,8 +244,11 @@ function renderCart(){
         couponDiscount.textContent = "-RM 0.00";
         nettTotalElement.textContent = "RM 0.00";
         cartActionButtons.style.display = "none";
+        clearCartButton.style.display = "none";
         return;
     }
+
+    clearCartButton.style.display = "block";
 
     cart.forEach(item=>{
         const div = document.createElement("div");
@@ -320,6 +324,12 @@ function addToCart(barcode){
         );
 
         if(existingItem){
+            const inventoryItem = inventory.find(
+                item => String(item.barcode).trim() === String(barcode).trim()
+            );
+            if(existingItem.quantity >= inventoryItem.quantity){
+                return;
+            }
             existingItem.quantity += 1;
         }
         else{
@@ -492,6 +502,12 @@ checkoutButton.addEventListener("click", ()=>{
     checkoutModal.classList.add("show");
 });
 
+clearCartButton.addEventListener("click", () => {
+    cart = [];
+    appliedCoupon = null;
+    renderCart();
+});
+
 payQr.addEventListener("click",()=>{
     checkoutModal.classList.remove("show");
     qrModal.classList.add("show");
@@ -583,13 +599,23 @@ function hidePaidArrows(){
 }
 
 window.increaseQuantity = function(barcode){
-    const item = cart.find(
+    const cartItem = cart.find(
         item => item.barcode === barcode
     );
 
-    if(item){
-        item.quantity += 1;
+    const inventoryItem = inventory.find(
+        item => String(item.barcode).trim() === String(barcode).trim()
+    );
+
+    if(!cartItem || !inventoryItem){
+        return;
     }
+
+    if(cartItem.quantity >= inventoryItem.quantity){
+        return;
+    }
+
+    cartItem.quantity += 1;
 
     renderCart();
 };

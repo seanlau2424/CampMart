@@ -1,26 +1,194 @@
 [
   {
-    "id": "8996001311615",
-    "name": "Roma",
-    "barcode": "8996001311615",
-    "cost": 2,
+    "id": "9557062400657",
+    "name": "Double Decker",
+    "barcode": "9557062400657",
+    "cost": 0.45,
+    "price": 1.5,
+    "quantity": 16
+  },
+  {
+    "id": "9556241200507",
+    "name": "Snekku Mi-Mi",
+    "barcode": "9556241200507",
+    "cost": 0.47,
+    "price": 1.5,
+    "quantity": 16
+  },
+  {
+    "id": "9556023118013",
+    "name": "Super Ring",
+    "barcode": "9556023118013",
+    "cost": 0.51,
+    "price": 1.5,
+    "quantity": 8
+  },
+  {
+    "id": "9556241002064",
+    "name": "Sho Yue Mi (Original)",
+    "barcode": "9556241002064",
+    "cost": 0.46,
+    "price": 1.5,
+    "quantity": 16
+  },
+  {
+    "id": "9556241002071",
+    "name": "Sho Yue Mi (Spicy)",
+    "barcode": "9556241002071",
+    "cost": 0.46,
+    "price": 1.5,
+    "quantity": 16
+  },
+  {
+    "id": "9557062402064",
+    "name": "Corntoz",
+    "barcode": "9557062402064",
+    "cost": 0.4,
+    "price": 2,
+    "quantity": 30
+  },
+  {
+    "id": "9780773811324",
+    "name": "Chipsmore",
+    "barcode": "9780773811324",
+    "cost": 0.69,
+    "price": 1.5,
+    "quantity": 16
+  },
+  {
+    "id": "9780201379624",
+    "name": "Pocky Mini",
+    "barcode": "9780201379624",
+    "cost": 1.25,
     "price": 3,
-    "quantity": 0
+    "quantity": 24
   },
   {
-    "id": "6973956343269",
-    "name": "Meds",
-    "barcode": "6973956343269",
-    "cost": 10,
-    "price": 17,
-    "quantity": 0
+    "id": "8851019500195",
+    "name": "Pocky (Cookies & Cream)",
+    "barcode": "8851019500195",
+    "cost": 2.99,
+    "price": 4.5,
+    "quantity": 2
   },
   {
-    "id": "9556247522764",
-    "name": "Cookies",
-    "barcode": "9556247522764",
-    "cost": 9,
-    "price": 15,
-    "quantity": 7
+    "id": "8851019310190",
+    "name": "Pocky (Chocolate)",
+    "barcode": "8851019310190",
+    "cost": 2.99,
+    "price": 4.5,
+    "quantity": 2
+  },
+  {
+    "id": "8851019310244",
+    "name": "Pocky (Double Choco)",
+    "barcode": "8851019310244",
+    "cost": 2.99,
+    "price": 4.5,
+    "quantity": 2
+  },
+  {
+    "id": "9780773879621",
+    "name": "Zip Chocolate",
+    "barcode": "9780773879621",
+    "cost": 0.49,
+    "price": 1.5,
+    "quantity": 20
+  },
+  {
+    "id": "69025952",
+    "name": "M&Ms",
+    "barcode": "69025952",
+    "cost": 1.01,
+    "price": 2,
+    "quantity": 13
+  },
+  {
+    "id": "9556001000750",
+    "name": "Maggi Tom Yam",
+    "barcode": "9556001000750",
+    "cost": 2.08,
+    "price": 4.5,
+    "quantity": 6
+  },
+  {
+    "id": "9556001177339",
+    "name": "Maggi Ayam",
+    "barcode": "9556001177339",
+    "cost": 2.08,
+    "price": 4.5,
+    "quantity": 6
+  },
+  {
+    "id": "9556001051509",
+    "name": "Milo Can",
+    "barcode": "9556001051509",
+    "cost": 2.07,
+    "price": 4,
+    "quantity": 6
+  },
+  {
+    "id": "9556007001911",
+    "name": "Salted Lemon Sparkling Tea",
+    "barcode": "9556007001911",
+    "cost": 1.5,
+    "price": 3.5,
+    "quantity": 4
+  },
+  {
+    "id": "9556007001928",
+    "name": "Rose Lychee Sparkling Tea",
+    "barcode": "9556007001928",
+    "cost": 1.5,
+    "price": 3.5,
+    "quantity": 4
+  },
+  {
+    "id": "9556570105139",
+    "name": "100 Plus",
+    "barcode": "9556570105139",
+    "cost": 1.63,
+    "price": 3.5,
+    "quantity": 6
+  },
+  {
+    "id": "8888002115029",
+    "name": "Fuze Tea",
+    "barcode": "8888002115029",
+    "cost": 1.5,
+    "price": 3.5,
+    "quantity": 12
+  },
+  {
+    "id": "8888002119072",
+    "name": "Ayataka Green Tea",
+    "barcode": "8888002119072",
+    "cost": 1.68,
+    "price": 3.5,
+    "quantity": 12
+  },
+  {
+    "id": "9555589210711",
+    "name": "Oolong Tea",
+    "barcode": "9555589210711",
+    "cost": 1.68,
+    "price": 3.5,
+    "quantity": 12
+  },
+  {
+    "id": "1663228669207",
+    "name": "Konjac Jelly (3 for RM2)",
+    "barcode": "1663228669207",
+    "cost": 1.14,
+    "price": 2,
+    "quantity": 25
+  },
+  {
+    "id": "9105740122027",
+    "name": "Mentos (5 for RM1.50)",
+    "barcode": "9105740122027",
+    "cost": 0.45,
+    "price": 1.5,
+    "quantity": 21
   }
 ]

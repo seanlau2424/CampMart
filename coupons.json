@@ -1,1 +1,218 @@
-[]
+[
+  {
+    "barcode": "56113655",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "01588910",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "64642918",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "03717424",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "02114903",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "87005905",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "45704383",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "90311017",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "25842456",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "93333580",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "09108820",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "04290605",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "44961732",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "87342062",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "41426241",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "22891488",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "99706623",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "48017060",
+    "name": "RM5 Coupon",
+    "value": 5,
+    "activated": false
+  },
+  {
+    "barcode": "61984653",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "84415028",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "12237074",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "84569134",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "19501314",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "58637548",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "57951317",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "97960867",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "28211433",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "34913284",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "72333488",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "00480024",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "14107863",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "37637446",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "22271457",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "98597024",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "46342584",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  },
+  {
+    "barcode": "69483714",
+    "name": "RM10 Coupon",
+    "value": 10,
+    "activated": false
+  }
+]
