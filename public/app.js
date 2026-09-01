@@ -22,6 +22,8 @@ const couponDiscount = document.getElementById("couponDiscount");
 const nettTotalElement = document.getElementById("nettTotal");
 const couponScanMessage = document.getElementById("couponScanMessage");
 const clearCartButton = document.getElementById("clearCartButton");
+const showTngQr = document.getElementById("showTngQr");
+const closeShowQr = document.getElementById("closeShowQr");
 
 const couponCameraModal = document.getElementById("couponCameraModal");
 const couponVideo = document.getElementById("couponVideo");
@@ -32,6 +34,7 @@ const checkoutModal = document.getElementById("checkoutModal");
 const qrModal = document.getElementById("qrModal");
 const cashModal = document.getElementById("cashModal");
 const thankYouModal = document.getElementById("thankYouModal");
+const showQrModal = document.getElementById("showQrModal");
 
 const couponErrorModal = document.getElementById("couponErrorModal");
 const couponErrorMessage = document.getElementById("couponErrorMessage");
@@ -550,6 +553,14 @@ cancelCheckout.addEventListener("click", ()=>{
 
 closeCouponError.addEventListener("click", ()=>{
     couponErrorModal.classList.remove("show");
+});
+
+showTngQr.addEventListener("click", () => {
+    showQrModal.classList.add("show");
+});
+
+closeShowQr.addEventListener("click", () => {
+    showQrModal.classList.remove("show");
 });
 
 function stopScanner(){

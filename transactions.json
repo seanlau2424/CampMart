@@ -1,7 +1,1032 @@
 [
   {
-    "date": "17-8-2026 13:34",
+    "date": "30-8-2026 09:18",
     "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 09:21",
+    "sales": [
+      [
+        "Double Decker",
+        1,
+        0.45,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 09:43",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 09:53",
+    "sales": [
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 09:54",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 09:54",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ],
+      [
+        "Corntoz",
+        1,
+        0.4,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 09:56",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ],
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ],
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ],
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ],
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 10:05",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 10:08",
+    "sales": [
+      [
+        "Chipsmore",
+        1,
+        0.69,
+        1.5
+      ],
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 10:09",
+    "sales": [
+      [
+        "Snekku Mi-Mi",
+        1,
+        0.47,
+        1.5
+      ],
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 10:10",
+    "sales": [
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 10:11",
+    "sales": [
+      [
+        "Chipsmore",
+        1,
+        0.69,
+        1.5
+      ],
+      [
+        "Snekku Mi-Mi",
+        1,
+        0.47,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 10:12",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ],
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 10:20",
+    "sales": [
+      [
+        "Sho Yue Mi (Original)",
+        1,
+        0.46,
+        1.5
+      ],
+      [
+        "Sho Yue Mi (Spicy)",
+        1,
+        0.46,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 10:41",
+    "sales": [
+      [
+        "Fuze Tea",
+        1,
+        1.5,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 10:54",
+    "sales": [
+      [
+        "Samyang Cheese Buldak",
+        1,
+        6.99,
+        8
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 10:54",
+    "sales": [
+      [
+        "Salted Lemon Sparkling Tea",
+        1,
+        1.5,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 10:58",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ],
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 11:16",
+    "sales": [
+      [
+        "Coke Lemon",
+        1,
+        3,
+        5
+      ]
+    ],
+    "mode": "Cash",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 11:18",
+    "sales": [
+      [
+        "Coke Lemon",
+        1,
+        3,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 11:19",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 11:20",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 11:20",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 11:24",
+    "sales": [
+      [
+        "Double Decker",
+        1,
+        0.45,
+        1.5
+      ],
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 11:27",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 11:28",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 11:31",
+    "sales": [
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ]
+    ],
+    "mode": "Cash",
+    "couponDiscount": 5
+  },
+  {
+    "date": "30-8-2026 11:36",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ],
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 13:53",
+    "sales": [
+      [
+        "Coke Lemon",
+        1,
+        2.6,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 13:58",
+    "sales": [
+      [
+        "Chipsmore",
+        2,
+        1.38,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:11",
+    "sales": [
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:16",
+    "sales": [
+      [
+        "Snekku Tam Tam",
+        2,
+        0.94,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:19",
+    "sales": [
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:25",
+    "sales": [
+      [
+        "Mentos (5 for RM1.50)",
+        1,
+        0.45,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:27",
+    "sales": [
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:29",
+    "sales": [
+      [
+        "M&Ms",
+        2,
+        2.02,
+        4
+      ],
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ],
+      [
+        "Zip Chocolate",
+        1,
+        0.49,
+        1.5
+      ],
+      [
+        "Sho Yue Mi (Spicy)",
+        1,
+        0.46,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:30",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:31",
+    "sales": [
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ],
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ],
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ],
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:32",
+    "sales": [
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ],
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:32",
+    "sales": [
+      [
+        "Coke Lemon",
+        1,
+        2.6,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:33",
+    "sales": [
+      [
+        "Zip Chocolate",
+        1,
+        0.49,
+        1.5
+      ],
+      [
+        "Oolong Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Coke Lemon",
+        1,
+        2.6,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "30-8-2026 14:35",
+    "sales": [
+      [
+        "Mamee Express Kari",
+        1,
+        1.67,
+        4
+      ],
+      [
+        "Pocky Mini",
+        2,
+        2.5,
+        6
+      ],
+      [
+        "Coke Lemon",
+        1,
+        2.6,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:36",
+    "sales": [
+      [
+        "Salted Lemon Sparkling Tea",
+        1,
+        1.5,
+        3.5
+      ],
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:38",
+    "sales": [
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ],
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:40",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:45",
+    "sales": [
+      [
+        "Chipsmore",
+        1,
+        0.69,
+        1.5
+      ],
+      [
+        "Sho Yue Mi (Original)",
+        1,
+        0.46,
+        1.5
+      ],
+      [
+        "Salted Lemon Sparkling Tea",
+        1,
+        1.5,
+        3.5
+      ],
+      [
+        "Rose Lychee Sparkling Tea",
+        1,
+        1.5,
+        3.5
+      ]
+    ],
+    "mode": "Cash",
+    "couponDiscount": 10
+  },
+  {
+    "date": "30-8-2026 14:48",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:50",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ],
+      [
+        "Maggi Tom Yam",
+        1,
+        2.08,
+        4.5
+      ],
+      [
+        "Nescafe Original",
+        1,
+        2.3,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "30-8-2026 14:52",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:55",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ],
+      [
+        "Fuze Tea",
+        1,
+        1.5,
+        3.5
+      ],
+      [
+        "Samyang Kimchi Ramen",
+        1,
+        6.8,
+        8
+      ]
+    ],
+    "mode": "Cash",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:56",
+    "sales": [
+      [
+        "Mentos (5 for RM1.50)",
+        1,
+        0.45,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 14:58",
+    "sales": [
+      [
+        "Mamee Chef Lontong",
+        1,
+        2.9,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 15:03",
+    "sales": [
+      [
+        "Salted Lemon Sparkling Tea",
+        1,
+        1.5,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 15:04",
+    "sales": [
+      [
+        "M&Ms",
+        1,
+        1.01,
+        2
+      ],
+      [
+        "Mamee Express Kari",
+        1,
+        1.67,
+        4
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 5
+  },
+  {
+    "date": "30-8-2026 15:33",
+    "sales": [
+      [
+        "Snekku Mi-Mi",
+        1,
+        0.47,
+        1.5
+      ],
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ],
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 15:47",
+    "sales": [
+      [
+        "Pocky (Double Choco)",
+        1,
+        2.99,
+        4.5
+      ],
+      [
+        "Nongshim Spicy Chicken",
+        1,
+        5.5,
+        7
+      ],
+      [
+        "Mamee Express Kari",
+        1,
+        1.67,
+        4
+      ],
+      [
+        "Mentos (5 for RM1.50)",
+        1,
+        0.45,
+        1.5
+      ],
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ],
+      [
+        "100 Plus",
+        1,
+        1.63,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 15:48",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 16:01",
+    "sales": [
+      [
+        "Coke Lemon",
+        1,
+        2.6,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 16:02",
+    "sales": [
+      [
+        "Pocky (Chocolate)",
+        1,
+        2.99,
+        4.5
+      ],
+      [
+        "Snekku Mi-Mi",
+        1,
+        0.47,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 5
+  },
+  {
+    "date": "30-8-2026 16:26",
+    "sales": [
+      [
+        "RM5 Coupon",
+        1,
+        0,
+        5
+      ],
       [
         "RM5 Coupon",
         1,
@@ -13,7 +1038,1211 @@
     "couponDiscount": 0
   },
   {
-    "date": "17-8-2026 13:35",
+    "date": "30-8-2026 16:39",
+    "sales": [
+      [
+        "Chipsmore",
+        1,
+        0.69,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 17:03",
+    "sales": [
+      [
+        "100 Plus",
+        1,
+        1.63,
+        3.5
+      ],
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ],
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "30-8-2026 17:21",
+    "sales": [
+      [
+        "Corntoz",
+        1,
+        0.4,
+        2
+      ],
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Maggi Tom Yam",
+        1,
+        2.08,
+        4.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 00:07",
+    "sales": [
+      [
+        "Zip Chocolate",
+        2,
+        0.98,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 00:14",
+    "sales": [
+      [
+        "Corntoz",
+        1,
+        0.4,
+        2
+      ],
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ],
+      [
+        "Nescafe Latte",
+        1,
+        2.3,
+        3.5
+      ],
+      [
+        "Chipsmore",
+        1,
+        0.69,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 00:33",
+    "sales": [
+      [
+        "100 Plus",
+        1,
+        1.63,
+        3.5
+      ],
+      [
+        "Pocky (Chocolate)",
+        1,
+        2.99,
+        4.5
+      ],
+      [
+        "M&Ms",
+        1,
+        1.01,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 00:44",
+    "sales": [
+      [
+        "Zip Chocolate",
+        2,
+        0.98,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 00:47",
+    "sales": [
+      [
+        "M&Ms",
+        1,
+        1.01,
+        2
+      ],
+      [
+        "Snekku Tam Tam",
+        2,
+        0.94,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 5
+  },
+  {
+    "date": "31-8-2026 00:58",
+    "sales": [
+      [
+        "Coke Lemon",
+        1,
+        2.6,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 5
+  },
+  {
+    "date": "31-8-2026 01:00",
+    "sales": [
+      [
+        "Sho Yue Mi (Spicy)",
+        2,
+        0.92,
+        3
+      ],
+      [
+        "Sho Yue Mi (Original)",
+        2,
+        0.92,
+        3
+      ],
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 01:01",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 01:09",
+    "sales": [
+      [
+        "Snekku Mi-Mi",
+        2,
+        0.94,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 01:11",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 01:14",
+    "sales": [
+      [
+        "Chipsmore",
+        2,
+        1.38,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 01:16",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ],
+      [
+        "Snekku Tam Tam",
+        2,
+        0.94,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 01:25",
+    "sales": [
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Sho Yue Mi (Spicy)",
+        1,
+        0.46,
+        1.5
+      ],
+      [
+        "Corntoz",
+        2,
+        0.8,
+        3
+      ],
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 01:28",
+    "sales": [
+      [
+        "Double Decker",
+        2,
+        0,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 01:30",
+    "sales": [
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Fuze Tea",
+        1,
+        1.5,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 01:30",
+    "sales": [
+      [
+        "Oolong Tea",
+        1,
+        1.68,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 01:32",
+    "sales": [
+      [
+        "Super Ring",
+        1,
+        0.51,
+        1.5
+      ],
+      [
+        "Double Decker",
+        1,
+        0,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 02:17",
+    "sales": [
+      [
+        "Fuze Tea",
+        1,
+        1.5,
+        3.5
+      ],
+      [
+        "Pocky (Cookies & Cream)",
+        1,
+        2.99,
+        4.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 02:17",
+    "sales": [
+      [
+        "Fuze Tea",
+        1,
+        1.5,
+        3.5
+      ],
+      [
+        "Pocky (Cookies & Cream)",
+        1,
+        2.99,
+        4.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 04:28",
+    "sales": [
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 04:32",
+    "sales": [
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 04:35",
+    "sales": [
+      [
+        "Coke Lemon",
+        1,
+        2.6,
+        5
+      ],
+      [
+        "Fuze Tea",
+        1,
+        1.5,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 04:38",
+    "sales": [
+      [
+        "Coke Lemon",
+        1,
+        2.6,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 04:43",
+    "sales": [
+      [
+        "Coke Lemon",
+        2,
+        5.2,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 04:50",
+    "sales": [
+      [
+        "Fuze Tea",
+        1,
+        1.5,
+        3.5
+      ],
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 04:51",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ],
+      [
+        "M&Ms",
+        1,
+        1.01,
+        2
+      ],
+      [
+        "Double Decker",
+        1,
+        0.45,
+        1.5
+      ],
+      [
+        "Corntoz",
+        1,
+        0.4,
+        1.5
+      ],
+      [
+        "Double Decker",
+        1,
+        0.45,
+        1.5
+      ],
+      [
+        "Mentos (5 for RM1.50)",
+        1,
+        0.45,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 04:54",
+    "sales": [
+      [
+        "Coke Lemon",
+        1,
+        2.6,
+        5
+      ],
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ],
+      [
+        "Double Decker",
+        2,
+        0.9,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 04:55",
+    "sales": [
+      [
+        "100 Plus",
+        1,
+        1.63,
+        3.5
+      ],
+      [
+        "Sho Yue Mi (Spicy)",
+        1,
+        0.46,
+        1.5
+      ],
+      [
+        "Chipsmore",
+        1,
+        0.69,
+        1.5
+      ],
+      [
+        "Sho Yue Mi (Original)",
+        1,
+        0.46,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 04:56",
+    "sales": [
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ],
+      [
+        "M&Ms",
+        1,
+        1.01,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 5
+  },
+  {
+    "date": "31-8-2026 04:57",
+    "sales": [
+      [
+        "M&Ms",
+        1,
+        1.01,
+        2
+      ],
+      [
+        "Fuze Tea",
+        1,
+        1.5,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 04:57",
+    "sales": [
+      [
+        "M&Ms",
+        1,
+        1.01,
+        2
+      ],
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 5
+  },
+  {
+    "date": "31-8-2026 04:58",
+    "sales": [
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 04:58",
+    "sales": [
+      [
+        "Pocky (Cookies & Cream)",
+        1,
+        2.99,
+        4.5
+      ]
+    ],
+    "mode": "Cash",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 04:59",
+    "sales": [
+      [
+        "Fuze Tea",
+        1,
+        1.5,
+        3.5
+      ],
+      [
+        "Snekku Tam Tam",
+        1,
+        0.47,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 5
+  },
+  {
+    "date": "31-8-2026 05:00",
+    "sales": [
+      [
+        "Fuze Tea",
+        1,
+        1.5,
+        3.5
+      ],
+      [
+        "Double Decker",
+        1,
+        0.45,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 05:01",
+    "sales": [
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Sho Yue Mi (Original)",
+        1,
+        0.46,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 05:03",
+    "sales": [
+      [
+        "Fuze Tea",
+        2,
+        3,
+        7
+      ],
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 05:03",
+    "sales": [
+      [
+        "Konjac Jelly (3 for RM2)",
+        5,
+        5.699999999999999,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 05:05",
+    "sales": [
+      [
+        "Corntoz",
+        1,
+        0.4,
+        1.5
+      ],
+      [
+        "Zip Chocolate",
+        1,
+        0.49,
+        1.5
+      ],
+      [
+        "Oolong Tea",
+        2,
+        3.36,
+        7
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 05:06",
+    "sales": [
+      [
+        "M&Ms",
+        1,
+        1.01,
+        2
+      ],
+      [
+        "Pocky Mini",
+        2,
+        2.5,
+        6
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 05:07",
+    "sales": [
+      [
+        "Corntoz",
+        1,
+        0.4,
+        1.5
+      ],
+      [
+        "M&Ms",
+        1,
+        1.01,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 05:08",
+    "sales": [
+      [
+        "Rose Lychee Sparkling Tea",
+        1,
+        1.5,
+        3.5
+      ],
+      [
+        "Pocky (Double Choco)",
+        1,
+        2.99,
+        4.5
+      ],
+      [
+        "M&Ms",
+        1,
+        1.01,
+        2
+      ]
+    ],
+    "mode": "Cash",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 05:23",
+    "sales": [
+      [
+        "Chipsmore",
+        2,
+        1.38,
+        3
+      ],
+      [
+        "Oolong Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 05:32",
+    "sales": [
+      [
+        "Coke Lemon",
+        1,
+        2.6,
+        5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 05:47",
+    "sales": [
+      [
+        "Oolong Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Mamee Express Kari",
+        1,
+        1.67,
+        4
+      ],
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ],
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 05:48",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 06:36",
+    "sales": [
+      [
+        "Double Decker",
+        1,
+        0.45,
+        1.5
+      ],
+      [
+        "Snekku Mi-Mi",
+        1,
+        0.47,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 08:05",
+    "sales": [
+      [
+        "100 Plus",
+        1,
+        1.63,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 08:06",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ],
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 08:53",
+    "sales": [
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ],
+      [
+        "100 Plus",
+        1,
+        1.63,
+        3.5
+      ],
+      [
+        "Chipsmore",
+        2,
+        1.38,
+        3
+      ],
+      [
+        "Snekku Mi-Mi",
+        1,
+        0.47,
+        1.5
+      ],
+      [
+        "Sho Yue Mi (Original)",
+        1,
+        0.46,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 08:58",
+    "sales": [
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 08:59",
+    "sales": [
+      [
+        "Double Decker",
+        1,
+        0.45,
+        1.5
+      ],
+      [
+        "Super Ring",
+        1,
+        0.51,
+        1.5
+      ],
+      [
+        "Zip Chocolate",
+        1,
+        0.49,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 09:00",
+    "sales": [
+      [
+        "Nescafe Original",
+        1,
+        2.3,
+        3.5
+      ],
+      [
+        "Chipsmore",
+        1,
+        0.69,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 09:00",
+    "sales": [
+      [
+        "Fuze Tea",
+        1,
+        1.5,
+        3.5
+      ],
+      [
+        "Double Decker",
+        1,
+        0.45,
+        1.5
+      ]
+    ],
+    "mode": "Cash",
+    "couponDiscount": 5
+  },
+  {
+    "date": "31-8-2026 09:04",
+    "sales": [
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 09:21",
+    "sales": [
+      [
+        "Pocky Mini",
+        3,
+        3.75,
+        9
+      ],
+      [
+        "Zip Chocolate",
+        1,
+        0.49,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 09:40",
+    "sales": [
+      [
+        "RM10 Coupon",
+        1,
+        0,
+        10
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 09:41",
+    "sales": [
+      [
+        "100 Plus Zero",
+        2,
+        2.94,
+        7
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 09:44",
+    "sales": [
+      [
+        "100 Plus Zero",
+        2,
+        2.94,
+        7
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 5
+  },
+  {
+    "date": "31-8-2026 11:36",
+    "sales": [
+      [
+        "100 Plus Zero",
+        1,
+        1.47,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 11:40",
+    "sales": [
+      [
+        "Corntoz",
+        10,
+        4,
+        15
+      ]
+    ],
+    "mode": "Cash",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 11:41",
     "sales": [
       [
         "Chipsmore",
@@ -22,13 +2251,586 @@
         1.5
       ],
       [
-        "Pocky mini",
+        "100 Plus Zero",
+        1,
+        1.47,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 11:46",
+    "sales": [
+      [
+        "Corntoz",
+        5,
+        2,
+        7.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 11:56",
+    "sales": [
+      [
+        "Pocky Mini",
         1,
         1.25,
         3
       ]
     ],
     "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 13:24",
+    "sales": [
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ],
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 13:50",
+    "sales": [
+      [
+        "Mamee Express Kari",
+        1,
+        1.67,
+        4
+      ],
+      [
+        "Maggi Ayam",
+        1,
+        2.08,
+        4.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 14:06",
+    "sales": [
+      [
+        "Milo Can",
+        1,
+        2.07,
+        4
+      ],
+      [
+        "Pocky Mini",
+        1,
+        1.25,
+        3
+      ],
+      [
+        "Super Ring",
+        1,
+        0.51,
+        1.5
+      ],
+      [
+        "Zip Chocolate",
+        1,
+        0.49,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 14:09",
+    "sales": [
+      [
+        "Mamee Express Kari",
+        1,
+        1.67,
+        4
+      ],
+      [
+        "Maggi Tom Yam",
+        1,
+        2.08,
+        4.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 14:10",
+    "sales": [
+      [
+        "Maggi Ayam",
+        1,
+        2.08,
+        4.5
+      ]
+    ],
+    "mode": "TNG",
     "couponDiscount": 5
+  },
+  {
+    "date": "31-8-2026 14:14",
+    "sales": [
+      [
+        "Mentos (5 for RM1.50)",
+        1,
+        0.45,
+        1.5
+      ],
+      [
+        "Double Decker",
+        1,
+        0.45,
+        1.5
+      ],
+      [
+        "Konjac Jelly (3 for RM2)",
+        1,
+        1.14,
+        2
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 14:22",
+    "sales": [
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 15:34",
+    "sales": [
+      [
+        "Mentos (5 for RM1.50)",
+        1,
+        0.45,
+        1.5
+      ],
+      [
+        "Nescafe Original",
+        1,
+        2.3,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 5
+  },
+  {
+    "date": "31-8-2026 15:35",
+    "sales": [
+      [
+        "Sho Yue Mi (Spicy)",
+        1,
+        0.46,
+        1.5
+      ],
+      [
+        "Super Ring",
+        1,
+        0.51,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 15:40",
+    "sales": [
+      [
+        "Maggi Tom Yam",
+        2,
+        4.16,
+        9
+      ],
+      [
+        "Corntoz",
+        1,
+        0.4,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 15:40",
+    "sales": [
+      [
+        "Nescafe Original",
+        1,
+        2.3,
+        3.5
+      ],
+      [
+        "100 Plus Zero",
+        1,
+        1.47,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 15:49",
+    "sales": [
+      [
+        "100 Plus Zero",
+        1,
+        1.47,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 15:52",
+    "sales": [
+      [
+        "Corntoz",
+        2,
+        0.8,
+        3
+      ],
+      [
+        "Super Ring",
+        2,
+        1.02,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 5
+  },
+  {
+    "date": "31-8-2026 15:53",
+    "sales": [
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Oolong Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Corntoz",
+        2,
+        0.8,
+        3
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 15:54",
+    "sales": [
+      [
+        "Pocky Mini",
+        2,
+        2.5,
+        6
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 16:04",
+    "sales": [
+      [
+        "Maggi Ayam",
+        1,
+        2.08,
+        4.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 16:06",
+    "sales": [
+      [
+        "100 Plus Zero",
+        1,
+        1.47,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 16:10",
+    "sales": [
+      [
+        "100 Plus Zero",
+        1,
+        1.47,
+        3.5
+      ],
+      [
+        "Coke ",
+        1,
+        1.57,
+        3.5
+      ],
+      [
+        "Maggi Ayam",
+        1,
+        2.08,
+        4.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 16:10",
+    "sales": [
+      [
+        "Nescafe Original",
+        1,
+        2.3,
+        3.5
+      ],
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Zip Chocolate",
+        1,
+        0.49,
+        1.5
+      ],
+      [
+        "Super Ring",
+        1,
+        0.51,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 10
+  },
+  {
+    "date": "31-8-2026 16:13",
+    "sales": [
+      [
+        "Nescafe Original",
+        1,
+        2.3,
+        3.5
+      ],
+      [
+        "Super Ring",
+        1,
+        0.51,
+        1.5
+      ]
+    ],
+    "mode": "Cash",
+    "couponDiscount": 5
+  },
+  {
+    "date": "31-8-2026 16:34",
+    "sales": [
+      [
+        "Coke ",
+        1,
+        1.57,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 17:07",
+    "sales": [
+      [
+        "Ayataka Green Tea",
+        1,
+        1.68,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "31-8-2026 23:06",
+    "sales": [
+      [
+        "Milo Can",
+        1,
+        2.07,
+        4
+      ],
+      [
+        "Sho Yue Mi (Spicy)",
+        1,
+        0.46,
+        1.5
+      ],
+      [
+        "Mentos (5 for RM1.50)",
+        1,
+        0.45,
+        1.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "1-9-2026 00:49",
+    "sales": [
+      [
+        "Nescafe Latte",
+        1,
+        2.3,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "1-9-2026 01:00",
+    "sales": [
+      [
+        "100 Plus Zero",
+        1,
+        1.47,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "1-9-2026 01:04",
+    "sales": [
+      [
+        "100 Plus Zero",
+        1,
+        1.47,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "1-9-2026 01:05",
+    "sales": [
+      [
+        "Nescafe Latte",
+        1,
+        2.3,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "1-9-2026 02:31",
+    "sales": [
+      [
+        "Coke ",
+        1,
+        1.57,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "1-9-2026 08:00",
+    "sales": [
+      [
+        "Oolong Tea",
+        2,
+        3.36,
+        7
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "1-9-2026 08:00",
+    "sales": [
+      [
+        "Oolong Tea",
+        1,
+        1.68,
+        3.5
+      ],
+      [
+        "Nescafe Original",
+        1,
+        2.3,
+        3.5
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
+  },
+  {
+    "date": "1-9-2026 08:10",
+    "sales": [
+      [
+        "Milo Can",
+        1,
+        2.07,
+        4
+      ]
+    ],
+    "mode": "TNG",
+    "couponDiscount": 0
   }
 ]

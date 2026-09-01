@@ -12,9 +12,14 @@
         <div class="header-title">
             ~Youth Camp Mart~
         </div>
-        <button class="admin-button" id="adminLogin">
-            Admin Login
-        </button>
+        <div class="header-buttons">
+            <button class="show-tng" id="showTngQr">
+                Show TNG QR
+            </button>
+            <button class="admin-button" id="adminLogin">
+                Admin Login
+            </button>
+        </div>
     </header>
     <div class="rotate-message">
         <div class="rotate-icon">↻</div>
@@ -174,6 +179,26 @@
                         ➜
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="showQrModal">
+        <div class="modal-content payment-modal-content">
+            <div class="checkout-title">
+                TouchNGo QR
+            </div>
+
+            <img src="/assets/tng.jpeg" class="payment-qr">
+
+            <p class="payment-text">
+                Please Scan Using TNG/Banking App
+            </p>
+
+            <div class="checkout-buttons">
+                <button class="cancel-checkout-button" id="closeShowQr">
+                    Close
+                </button>
             </div>
         </div>
     </div>

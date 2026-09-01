@@ -33,7 +33,7 @@
     "barcode": "87005905",
     "name": "RM5 Coupon",
     "value": 5,
-    "activated": false
+    "activated": true
   },
   {
     "barcode": "45704383",
@@ -51,7 +51,7 @@
     "barcode": "25842456",
     "name": "RM5 Coupon",
     "value": 5,
-    "activated": false
+    "activated": true
   },
   {
     "barcode": "93333580",
@@ -69,7 +69,7 @@
     "barcode": "04290605",
     "name": "RM5 Coupon",
     "value": 5,
-    "activated": false
+    "activated": true
   },
   {
     "barcode": "44961732",
@@ -111,7 +111,7 @@
     "barcode": "61984653",
     "name": "RM10 Coupon",
     "value": 10,
-    "activated": false
+    "activated": true
   },
   {
     "barcode": "84415028",
@@ -213,6 +213,6 @@
     "barcode": "69483714",
     "name": "RM10 Coupon",
     "value": 10,
-    "activated": false
+    "activated": true
   }
 ]

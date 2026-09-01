@@ -28,6 +28,28 @@ body {
     font-weight: 700;
 }
 
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.show-tng {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 10px;
+    background: white;
+    color: #174a7c;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.show-tng:hover {
+    background: #eef6ff;
+}
+
 .admin-button {
     padding: 10px 22px;
     border: none;
