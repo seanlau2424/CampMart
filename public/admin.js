@@ -1,3 +1,6 @@
+import { requestJson, escapeHtml } from "./api.mjs";
+import { createBarcodeScanner, createScanSound } from "./barcode-scanner.mjs";
+
 const inventoryGrid = document.getElementById("inventoryGrid");
 const totalItems = document.getElementById("totalItems");
 const lastItem = document.getElementById("lastItem");
@@ -34,46 +37,39 @@ const cancelDeleteCoupon = document.getElementById("cancelDeleteCoupon");
 const confirmDeleteCoupon = document.getElementById("confirmDeleteCoupon");
 let deleteCouponBarcode = null;
 
-import { BrowserMultiFormatReader } 
-from "https://cdn.jsdelivr.net/npm/@zxing/browser@latest/+esm";
-
-import {
-    DecodeHintType,
-    BarcodeFormat
-} from "https://cdn.jsdelivr.net/npm/@zxing/library@latest/+esm";
-
+const saveItemButton = itemForm.querySelector('button[type="submit"]');
+const saveCouponButton = couponForm.querySelector('button[type="submit"]');
 let deleteId = null;
 let inventory = [];
 let coupons = [];
 let editMode = false;
 let editId = null;
-let barcodeScanner;
-let scannerControls;
-let stream;
-let currentFacingMode = "environment";
 let scannerPurpose = "";
+let scannerRequest = 0;
+const scanSound = createScanSound();
+const scanner = createBarcodeScanner(video, barcode => {
+    scanSound.play();
+    stopBarcodeScanner();
+    if (scannerPurpose === "coupon") openCouponModal(barcode);
+    else {
+        openModal();
+        itemBarcode.value = barcode;
+    }
+});
 
-let scanSound = new Audio("/assets/barcode-scan-sound.mp3");
-scanSound.volume = 0.7;
-scanSound.preload = "auto";
-
-const hints = new Map();
-
-hints.set(
-    DecodeHintType.TRY_HARDER,
-    true
-);
-
-hints.set(
-    DecodeHintType.POSSIBLE_FORMATS,
-    [
-        BarcodeFormat.EAN_13,
-        BarcodeFormat.EAN_8,
-        BarcodeFormat.UPC_A
-    ]
-);
-
-barcodeScanner = new BrowserMultiFormatReader(hints);
+async function runAction(button, cancel, action) {
+    if (button.disabled) return;
+    button.disabled = true;
+    cancel.disabled = true;
+    try {
+        await action();
+    } catch (error) {
+        alert(error.message);
+    } finally {
+        button.disabled = false;
+        cancel.disabled = false;
+    }
+}
 
 function renderInventory(){
     inventoryGrid.innerHTML = "";
@@ -83,11 +79,11 @@ function renderInventory(){
         card.className="item-card";
         card.innerHTML = `
             <div class="item-name">
-                ${item.name}
+                ${escapeHtml(item.name)}
             </div>
 
             <div class="item-info">
-                Barcode: ${item.barcode}
+                Barcode: ${escapeHtml(item.barcode)}
             </div>
 
             <div class="item-info">
@@ -99,14 +95,16 @@ function renderInventory(){
             </div>
 
             <div class="item-info">
-                Stock Quantity: ${item.quantity}
+                Stock Quantity: ${escapeHtml(item.quantity)}
             </div>
 
             <div class="item-actions">
-                <button class="edit-btn" onclick="editItem('${item.id}')">Edit</button>
-                <button class="delete-btn" onclick="deleteItem('${item.id}')">Delete</button>
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
             </div>
         `;
+        card.querySelector(".edit-btn").addEventListener("click", () => editItem(item.id));
+        card.querySelector(".delete-btn").addEventListener("click", () => deleteItem(item.id));
         inventoryGrid.appendChild(card);
     });
 
@@ -139,21 +137,21 @@ function renderCoupons(){
             <div class="coupon-summary">
 
                 <div class="coupon-barcode">
-                    ${coupon.barcode}
+                    ${escapeHtml(coupon.barcode)}
                 </div>
 
                 <div class="coupon-name">
-                    ${coupon.name}
+                    ${escapeHtml(coupon.name)}
                 </div>
 
                 <div class="
                     coupon-status
                     ${coupon.activated ? "active" : "inactive"}
                 ">
-                    Activated = ${coupon.activated}
+                    Activated = ${escapeHtml(coupon.activated)}
                 </div>
 
-                <button class="delete-coupon-btn" data-barcode="${coupon.barcode}">
+                <button class="delete-coupon-btn" data-barcode="${escapeHtml(coupon.barcode)}">
                     x
                 </button>
             </div>
@@ -179,27 +177,24 @@ function openCouponModal(barcode){
 }
 
 async function loadInventory(){
-    const response = await fetch("/inventory");
-    inventory = await response.json();
+    inventory = await requestJson("/inventory");
     renderInventory();
 }
 
 async function loadCoupons(){
-    const response = await fetch("/coupons");
-    coupons = await response.json();
+    coupons = await requestJson("/coupons");
     renderCoupons();
 }
 
 async function loadTransactions() {
-    const response = await fetch("/transactions");
-    const transactions = await response.json();
+    const transactions = await requestJson("/transactions");
 
     let totalSalesValue = 0;
     let totalProfitValue = 0;
 
     transactionsList.innerHTML = "";
 
-    transactions.forEach((transaction, index) => {
+    transactions.forEach(transaction => {
 
         let sales = 0;
         let profit = 0;
@@ -222,7 +217,7 @@ async function loadTransactions() {
             <div class="transaction-summary">
 
                 <div class="transaction-date">
-                    ${transaction.date}
+                    ${escapeHtml(transaction.date)}
                 </div>
 
                 <div class="transaction-sales">
@@ -253,8 +248,8 @@ async function loadTransactions() {
 
                     ${transaction.sales.map(item=>`
                         <tr>
-                            <td>${item[0]}</td>
-                            <td>${item[1]}</td>
+                            <td>${escapeHtml(item[0])}</td>
+                            <td>${escapeHtml(item[1])}</td>
                             <td>RM ${item[2].toFixed(2)}</td>
                             <td>RM ${item[3].toFixed(2)}</td>
                             <td>RM ${(item[3] - item[2]).toFixed(2)}</td>
@@ -320,73 +315,26 @@ function updateDashboard(){
     }
 }
 
-async function startBarcodeCamera(){
-    if(stream){
-        stream
-            .getTracks()
-            .forEach(track=>{
-                track.stop();
-            });
+async function runScanner(flip = false) {
+    const current = ++scannerRequest;
+    flipButton.disabled = true;
+    try {
+        if (flip) await scanner.flip();
+        else await scanner.start();
+    } catch (error) {
+        if (current !== scannerRequest) return;
+        stopBarcodeScanner();
+        alert(error.message);
+    } finally {
+        if (current === scannerRequest) flipButton.disabled = false;
     }
-
-    stream =
-        await navigator.mediaDevices.getUserMedia({
-            video:{
-                width:{
-                    ideal:1920
-                },
-                height:{
-                    ideal:1080
-                },
-                facingMode:{
-                    exact: currentFacingMode
-                }
-            }
-        });
-    video.srcObject = stream;
-    await video.play();
 }
 
-async function openBarcodeScanner(purpose = "item"){
+async function openBarcodeScanner(purpose = "item") {
     scannerPurpose = purpose;
-    try{
-        scanSound.play();
-        scanSound.pause();
-        scanSound.currentTime = 0;
-    }
-    catch(e){
-        console.log("Audio unlock failed:", e);
-    }
-
+    scanSound.unlock();
     barcodeModal.classList.add("show");
-    await startBarcodeCamera();
-
-    scannerControls =
-        await barcodeScanner.decodeFromVideoElement(
-            video,
-            (result,error)=>{
-                if(result){
-                    const barcode = result.getText();
-                    scanSound.currentTime = 0;
-                    scanSound.play().catch(err=>{
-                        console.log(
-                            "Scan sound blocked:",
-                            err
-                        );
-                    });
-
-                    stopBarcodeScanner();
-
-                    if(scannerPurpose === "coupon"){
-                        openCouponModal(barcode);
-                    }
-                    else{
-                        openModal();
-                        itemBarcode.value = barcode;
-                    }
-                }
-            }
-        );
+    await runScanner();
 }
 
 function openModal(){
@@ -397,55 +345,18 @@ function openModal(){
     editId=null;
 }
 
-flipButton.addEventListener("click", async()=>{
-    currentFacingMode =
-        currentFacingMode === "environment"
-        ? "user"
-        : "environment";
-
-    if(scannerControls){
-        scannerControls.stop();
-    }
-
-    await startBarcodeCamera();
-
-    scannerControls =
-        await barcodeScanner.decodeFromVideoElement(
-            video,
-            (result,error)=>{
-                if(result){
-
-                    const barcode = result.getText();
-
-                    scanSound.currentTime = 0;
-                    scanSound.play().catch(err=>{
-                        console.log("Scan sound blocked:", err);
-                    });
-
-                    stopBarcodeScanner();
-
-                    openModal();
-
-                    itemBarcode.value = barcode;
-                }
-            }
-        );
+flipButton.addEventListener("click", () => {
+    if (!flipButton.disabled) runScanner(true);
 });
 
-function stopBarcodeScanner(){
-    if(scannerControls){
-        scannerControls.stop();
-    }
-    if(stream){
-        stream
-        .getTracks()
-        .forEach(track=>{
-            track.stop();
-        });
-    }
-    video.srcObject=null;
+function stopBarcodeScanner() {
+    scannerRequest += 1;
+    scanner.stop();
     barcodeModal.classList.remove("show");
+    flipButton.disabled = false;
 }
+
+window.addEventListener("pagehide", stopBarcodeScanner);
 
 function closeModal(){
     modal.classList.remove("show");
@@ -484,33 +395,24 @@ couponValue.addEventListener(
     }
 );
 
-couponForm.addEventListener(
-    "submit",
-    async e => {
-        e.preventDefault();
-        const coupon = {
-            barcode: couponBarcode.value,
-            name: couponName.value,
-            value: Number(couponValue.value),
-            activated: false
-
-        };
-        await fetch(
-            "/coupons",
-            {
-                method:"POST",
-
-                headers:{
-                    "Content-Type":"application/json"
-                },
-
-                body:JSON.stringify(coupon)
-            }
-        );
+couponForm.addEventListener("submit", async event => {
+    event.preventDefault();
+    const coupon = {
+        barcode: couponBarcode.value,
+        name: couponName.value,
+        value: Number(couponValue.value),
+        activated: false
+    };
+    await runAction(saveCouponButton, cancelCoupon, async () => {
+        await requestJson("/coupons", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(coupon)
+        });
         couponModal.classList.remove("show");
         await loadCoupons();
-    }
-);
+    });
+});
 
 cancelCoupon.addEventListener(
     "click",
@@ -519,49 +421,27 @@ cancelCoupon.addEventListener(
     }
 );
 
-itemForm.addEventListener(
-"submit",
-async e=>{
-    e.preventDefault();
-
+itemForm.addEventListener("submit", async event => {
+    event.preventDefault();
     const item = {
-        name:itemName.value,
-        barcode:itemBarcode.value,
+        name: itemName.value,
+        barcode: itemBarcode.value,
         cost: Number(itemCost.value),
-        price:Number(itemPrice.value),
-        quantity:Number(itemQuantity.value)
+        price: Number(itemPrice.value),
+        quantity: Number(itemQuantity.value)
     };
-
-    if(editMode){
-        await fetch(
-            `/inventory/${editId}`,
-            {
-                method:"PUT",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                body:JSON.stringify(item)
-            }
-        );
-    }
-    else{
-        await fetch(
-            "/inventory",
-            {
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                body:JSON.stringify(item)
-            }
-        );
-    }
-
-    closeModal();
-    await loadInventory();
+    await runAction(saveItemButton, cancelButton, async () => {
+        await requestJson(editMode ? `/inventory/${encodeURIComponent(editId)}` : "/inventory", {
+            method: editMode ? "PUT" : "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(item)
+        });
+        closeModal();
+        await loadInventory();
+    });
 });
 
-window.editItem=function(id){
+function editItem(id){
     const item =
         inventory.find(
             x=>x.id===id
@@ -582,7 +462,7 @@ window.editItem=function(id){
     modal.classList.add("show");
 };
 
-window.deleteItem=function(id){
+function deleteItem(id){
     deleteId = id;
     deleteModal.classList.add("show");
 };
@@ -595,18 +475,14 @@ cancelDelete.addEventListener(
     }
 );
 
-confirmDelete.addEventListener(
-"click",
-async ()=>{
-    await fetch(
-        `/inventory/${deleteId}`,
-        {
-            method:"DELETE"
-        }
-    );
-    deleteModal.classList.remove("show");
-    deleteId=null;
-    await loadInventory();
+confirmDelete.addEventListener("click", async () => {
+    if (deleteId === null) return;
+    await runAction(confirmDelete, cancelDelete, async () => {
+        await requestJson(`/inventory/${encodeURIComponent(deleteId)}`, { method: "DELETE" });
+        deleteModal.classList.remove("show");
+        deleteId = null;
+        await loadInventory();
+    });
 });
 
 cancelDeleteCoupon.addEventListener(
@@ -617,31 +493,15 @@ cancelDeleteCoupon.addEventListener(
     }
 );
 
-confirmDeleteCoupon.addEventListener(
-    "click",
-    async () => {
-
-        if(!deleteCouponBarcode){
-            return;
-        }
-        const response = await fetch(
-            `/coupons/${encodeURIComponent(deleteCouponBarcode)}`,
-            {
-                method:"DELETE"
-            }
-        );
-
-        if(!response.ok){
-            console.error(
-                "Failed to delete coupon"
-            );
-            return;
-        }
+confirmDeleteCoupon.addEventListener("click", async () => {
+    if (deleteCouponBarcode === null) return;
+    await runAction(confirmDeleteCoupon, cancelDeleteCoupon, async () => {
+        await requestJson(`/coupons/${encodeURIComponent(deleteCouponBarcode)}`, { method: "DELETE" });
         deleteCouponModal.classList.remove("show");
         deleteCouponBarcode = null;
         await loadCoupons();
-    }
-);
+    });
+});
 
 logoutButton.addEventListener(
     "click",
@@ -651,9 +511,7 @@ logoutButton.addEventListener(
 );
 
 async function initialize(){
-    await loadInventory();
-    await loadCoupons();
-    await loadTransactions();
+    await Promise.all([loadInventory(), loadCoupons(), loadTransactions()]);
 }
 
-initialize();
+initialize().catch(error => alert(error.message));
